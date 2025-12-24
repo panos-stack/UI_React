@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { BusVisualization } from './BusVisualization';
 import { CleaningMethodSelector } from './CleaningMethodSelector';
 import { SelectionSummary } from './SelectionSummary';
-import { Clock, CheckCircle, ArrowLeft } from 'lucide-react';
+import { Clock, CheckCircle } from 'lucide-react';
+import './index.css';
 
 export interface CleaningSelection {
   spot: string;
