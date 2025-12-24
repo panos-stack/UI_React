@@ -9,11 +9,7 @@ export interface CleaningSelection {
   methods: string[];
 }
 
-interface BusCleaningAppProps {
-  onBack: () => void;
-}
-
-export function BusCleaningApp({ onBack }: BusCleaningAppProps) {
+export function BusCleaningApp() {
   const [selectedSpot, setSelectedSpot] = useState<string | null>(null);
   const [selections, setSelections] = useState<CleaningSelection[]>([]);
   const [appState, setAppState] = useState<'selecting' | 'cleaning' | 'complete'>('selecting');
@@ -161,21 +157,6 @@ export function BusCleaningApp({ onBack }: BusCleaningAppProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-slate-100 p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors mb-8"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Menu
-          </button>
-          <div className="text-center">
-            <h1 className="text-slate-800 mb-2">BerlBus Cleaning Service</h1>
-            <p className="text-slate-600">Select areas on the bus and choose your preferred cleaning methods</p>
-          </div>
-        </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">

@@ -15,3 +15,5 @@
   },
   "include": ["src"]
 }
+
+// , "App.tsx", "main.tsx", "index2.tsx", "globals.tsx"
