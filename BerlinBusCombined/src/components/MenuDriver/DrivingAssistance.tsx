@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function AlertTriangleIcon() {
   return (
@@ -72,12 +72,46 @@ function NavigationIcon() {
 }
 
 export function DrivingAssistance() {
-  const [speed, setSpeed] = useState(65);
+  const [speed, setSpeed] = useState(55);
   const [speedLimit] = useState(60);
   const [laneDeviation, setLaneDeviation] = useState(false);
   const [driverTired, setDriverTired] = useState(false);
-  const [passengersExiting, setPassengersExiting] =
-    useState(false);
+  const [passengersExiting, setPassengersExiting] = useState(false);
+
+  const speeds = [55, 62, 75];
+  const states = [true, false];
+
+  useEffect(() => {
+      if (passengersExiting) return;
+
+      const interval = setInterval(() => {
+        setSpeed(prevSpeed => {
+
+          if (passengersExiting) {
+            return 0;
+          }
+
+          const target = speeds[Math.floor(Math.random() * speeds.length)];
+          const step = 5;
+
+          let nextSpeed = prevSpeed;
+          if (prevSpeed < target) nextSpeed = Math.min(prevSpeed + step, target);
+          if (prevSpeed > target) nextSpeed = Math.max(prevSpeed - step, target);
+
+          const nextLaneDeviation =states[Math.floor(Math.random() * states.length)];
+          setLaneDeviation(nextLaneDeviation);
+
+          setDriverTired((nextSpeed > speedLimit) && nextLaneDeviation);
+
+          return nextSpeed;
+        });
+
+      }, 2000);
+
+    return () => clearInterval(interval);
+}, [passengersExiting]);
+
+
 
   return (
     <div>
@@ -115,7 +149,7 @@ export function DrivingAssistance() {
             </div>
           </div>
         </div>
-
+        
         {/* Alerts */}
         <div className="bus-space-y-4">
           {speed > speedLimit && (
@@ -167,49 +201,26 @@ export function DrivingAssistance() {
               <div className="bus-alert-content">
                 <div className="bus-alert-title">Προσοχή</div>
                 <div className="bus-alert-description">
-                  Επιβάτες κατεβαίνουν ακόμα. Μην κλείσετε τις
-                  πόρτες!
+                  Επιβάτες κατεβαίνουν ακόμα. Μην κλείσετε τις πόρτες!
                 </div>
               </div>
             </div>
           )}
         </div>
-
-        {/* Demo Controls */}
-        <div className="bus-mt-8 bus-pt-6 bus-border-t">
-          <p className="bus-text-sm bus-text-muted bus-mb-4">
-            Έλεγχοι Demo:
-          </p>
-          <div className="bus-demo-controls">
-            <button
-              onClick={() =>
-                setSpeed(speed > speedLimit ? 55 : 65)
-              }
-              className="bus-btn bus-btn-secondary"
-            >
-              Αλλαγή Ταχύτητας
-            </button>
-            <button
-              onClick={() => setLaneDeviation(!laneDeviation)}
-              className="bus-btn bus-btn-secondary"
-            >
-              Απόκλιση Λωρίδας
-            </button>
-            <button
-              onClick={() => setDriverTired(!driverTired)}
-              className="bus-btn bus-btn-secondary"
-            >
-              Κόπωση Οδηγού
-            </button>
-            <button
-              onClick={() =>
-                setPassengersExiting(!passengersExiting)
-              }
-              className="bus-btn bus-btn-secondary"
-            >
-              Επιβάτες Εξόδου
-            </button>
-          </div>
+          
+        <div className="bus-demo-controls">
+          <button
+            onClick={() => {
+              setPassengersExiting(prev => {
+                const next = !prev;
+                setSpeed(next ? 0 : 5);
+                return next;
+              });
+            }}
+            className="bus-btn bus-button-secondary"
+          >
+            Στάση
+          </button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ThermometerIcon({ className }: { className?: string }) {
   return (
@@ -56,6 +56,23 @@ export function TemperatureControl() {
     if (targetTemp > currentTemp) return 'heating';
     return 'idle';
   };
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentTemp(prevTemp => {
+      const step = 1;
+
+      if (prevTemp < targetTemp) return Math.min(prevTemp + step, targetTemp);
+      if (prevTemp > targetTemp) return Math.max(prevTemp - step, targetTemp);
+
+      return prevTemp;
+    });
+
+  }, 5000);
+
+  
+    return () => clearInterval(interval);
+  }, [currentTemp, targetTemp]);
 
   const mode = getMode();
 
@@ -146,17 +163,6 @@ export function TemperatureControl() {
                 Θερμό (25°C)
               </button>
             </div>
-          </div>
-
-          {/* Simulation Control */}
-          <div className="bus-pt-4 bus-border-t">
-            <p className="bus-text-sm bus-text-muted bus-mb-3">Προσομοίωση:</p>
-            <button
-              onClick={() => setCurrentTemp(targetTemp)}
-              className="bus-btn bus-btn-secondary"
-            >
-              Επίτευξη Στόχου
-            </button>
           </div>
         </div>
       </div>
