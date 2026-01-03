@@ -116,7 +116,21 @@ export function DrivingAssistance() {
   return (
     <div>
       <div className="bus-card">
-        <h2>Βοήθεια στην Οδήγηση</h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="flex">Βοήθεια στην Οδήγηση</h2>
+          <button
+              onClick={() => {
+                setPassengersExiting(prev => {
+                  const next = !prev;
+                  setSpeed(next ? 0 : 5);
+                  return next;
+                });
+              }}
+              className="flex bus-btn bus-button-secondary"
+            >
+              Στάση
+            </button>
+          </div>
         <p className="bus-card-description">
           Οι αισθητήρες του λεωφορείου παρακολουθούν την οδήγηση
           και βοηθούν τον οδηγό.
@@ -206,21 +220,6 @@ export function DrivingAssistance() {
               </div>
             </div>
           )}
-        </div>
-          
-        <div className="bus-demo-controls">
-          <button
-            onClick={() => {
-              setPassengersExiting(prev => {
-                const next = !prev;
-                setSpeed(next ? 0 : 5);
-                return next;
-              });
-            }}
-            className="bus-btn bus-button-secondary"
-          >
-            Στάση
-          </button>
         </div>
       </div>
     </div>
