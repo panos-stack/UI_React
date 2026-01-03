@@ -16,7 +16,7 @@ export function BusCleaningApp() {
   const [appState, setAppState] = useState<'selecting' | 'cleaning' | 'complete'>('selecting');
   const [totalTime, setTotalTime] = useState<number>(0);
   const [remainingTime, setRemainingTime] = useState<number>(0);
-
+  const [wholeBusMethods, setWholeBusMethods] = useState<string[]>([]);
   const methodTimes: Record<string, number> = {
     'basic-wash': 1,
     'deep-clean': 3,
@@ -25,6 +25,28 @@ export function BusCleaningApp() {
     'pressure-wash': 2,
     'detail': 6 
   };
+
+  const allSpotIds = [
+    'windshield', 'dashboard', 'front-mirror-left', 'front-mirror-right',
+    'steps', 'seats-row1-left', 'seats-row2-left', 'seats-row2-right',
+    'seats-row3-left', 'seats-row3-right', 'seats-row4-left', 'seats-row4-right',
+    'seats-row5-left', 'seats-row5-right', 'seats-row6-left', 'seats-row6-right',
+    'seats-row7-left', 'seats-row7-right', 'seats-row8-left', 'seats-row8-right',
+    'seats-row9-left', 'seats-row9-right', 'seats-row10-left', 'seats-row10-middle',
+    'seats-row10-right', 'aisle', 'windows-left', 'windows-right'
+  ];
+
+  const finds = [
+    'Wallet', 
+    'Smartphone',
+    'Keys',
+    'Sunglasses',
+    'Purse',
+    'Cash',
+    'Card',
+    'Passport',
+    'ID'
+  ];
 
   // Countdown timer effect
   useEffect(() => {
@@ -44,11 +66,33 @@ export function BusCleaningApp() {
 
   const handleSpotSelect = (spot: string) => {
     setSelectedSpot(spot);
+    // If selecting a regular spot while in whole-bus mode, exit whole-bus mode
+    if (spot !== 'whole-bus') {
+      setWholeBusMethods([]);
+    }
   };
 
   const handleMethodsUpdate = (methods: string[]) => {
     if (!selectedSpot) return;
+    // If in whole-bus mode, apply to all spots
+    if (selectedSpot === 'whole-bus') {
+      setWholeBusMethods(methods);
+      
+      if (methods.length === 0) {
+        // Clear all selections
+        setSelections([]);
+      } else {
+        // Apply methods to all spots
+        const newSelections: CleaningSelection[] = allSpotIds.map(spot => ({
+          spot,
+          methods
+        }));
+        setSelections(newSelections);
+      }
+      return;
+    }
 
+    // Regular spot handling
     setSelections(prev => {
       const existing = prev.find(s => s.spot === selectedSpot);
       if (existing) {
@@ -66,6 +110,9 @@ export function BusCleaningApp() {
   };
 
   const getSelectedMethods = (spot: string): string[] => {
+    if (spot === 'whole-bus') {
+      return wholeBusMethods;
+    }
     return selections.find(s => s.spot === spot)?.methods || [];
   };
 
@@ -74,11 +121,26 @@ export function BusCleaningApp() {
     if (selectedSpot === spot) {
       setSelectedSpot(null);
     }
+    // Exit whole-bus mode if clearing spots
+    setWholeBusMethods([])
   }
 
   const handleClearAll = () => {
     setSelections([]);
     setSelectedSpot(null);
+    setWholeBusMethods([]);
+  };
+
+  const handleSelectWholeBus = () => {
+    setSelectedSpot('whole-bus');
+    // Set default methods if there are existing whole-bus methods
+    if (wholeBusMethods.length > 0) {
+      const newSelections: CleaningSelection[] = allSpotIds.map(spot => ({
+        spot,
+        methods: wholeBusMethods
+      }));
+      setSelections(newSelections);
+    }
   };
 
   const handleConfirm = () => {
@@ -100,6 +162,7 @@ export function BusCleaningApp() {
     setAppState('selecting');
     setTotalTime(0);
     setRemainingTime(0);
+    setWholeBusMethods([]);
   };
 
   const formatTime = (seconds: number) => {
@@ -137,17 +200,36 @@ export function BusCleaningApp() {
 
   // Completion view
   if (appState === 'complete') {
+    const num = Math.floor(Math.random() * (finds.length + 1));
+    let foundItems = [] ;
+    if (num === 0){
+      foundItems = null;
+    }
+    else {
+      for (let i = 0; i < num; i++){
+        const item = Math.floor(Math.random() * num);
+        foundItems.push(finds[item]);
+      }
+    }
+    console.log(foundItems);
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-slate-100 flex items-center justify-center p-8">
         <div className="bg-white rounded-2xl shadow-2xl p-12 text-center max-w-md w-full">
           <CheckCircle className="w-24 h-24 text-green-600 mx-auto mb-6" />
           <h2 className="text-slate-800 mb-4">The bus is now clean!</h2>
-          <p className="text-slate-600 mb-8">All selected areas have been cleaned successfully. No valuable items have been found</p>
+          <p className="text-slate-600 mb-8">All selected areas have been cleaned successfully. A total of {num} items has been found.
+          { <p> The items are:
+              {foundItems.map(item => (
+            <div key={item}>{item}</div>
+          ))}
+          </p>
+          }
+          </p>
           <button 
             onClick={handleReset}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors"
           >
-            OK
+            Clean another Bus
           </button>
         </div>
       </div>
@@ -165,6 +247,7 @@ export function BusCleaningApp() {
               onSpotSelect={handleSpotSelect}
               selectedSpot={selectedSpot}
               selections={selections}
+              onSelectWholeBus={handleSelectWholeBus}
             />
           </div>
 

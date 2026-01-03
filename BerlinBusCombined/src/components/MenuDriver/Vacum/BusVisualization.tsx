@@ -5,6 +5,7 @@ interface BusVisualizationProps {
   onSpotSelect: (spot: string) => void;
   selectedSpot: string | null;
   selections: CleaningSelection[];
+  onSelectWholeBus: () => void;
 }
 
 // Interior spots matching the realistic layout
@@ -51,14 +52,22 @@ const interiorSpots = [
   { id: 'windows-right', name: 'Windows (Right)', x: 220, y: 130, width: 20, height: 240 },
 ];
 
-export function BusVisualization({ onSpotSelect, selectedSpot, selections }: BusVisualizationProps) {
+export function BusVisualization({ onSpotSelect, selectedSpot, selections, onSelectWholeBus }: BusVisualizationProps) {
   const isSpotSelected = (spotId: string) => {
     return selections.some(s => s.spot === spotId);
   };
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-8">
-      <h2 className="text-slate-800 mb-3">Bus Interior (Top View) - Click to Select Areas</h2>
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="flex-1 text-slate-800">Bus Interior (Top View) - Click to Select Areas</h2>
+        <button
+          onClick={onSelectWholeBus}
+          className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+        >
+          Select Whole Bus 
+        </button>
+      </div>
       
       <div className="relative w-full max-w-md mx-auto" style={{ paddingBottom: '140%' }}>
         <svg 

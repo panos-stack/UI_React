@@ -117,21 +117,28 @@ export function CleaningMethodSelector({ selectedSpot, selectedMethods, onMethod
         <h2 className="text-slate-800 mb-4">Cleaning Methods</h2>
         <div className="text-center py-12">
           <Droplets className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-          <p className="text-slate-500">Select an area on the bus to choose cleaning methods</p>
+          <p className="text-slate-500">Select an area on the bus or click "Select Whole Bus" to choose cleaning methods</p>
         </div>
       </div>
     );
   }
 
-  const spotName = selectedSpot.split('-').map(word => 
-    word.charAt(0).toUpperCase() + word.slice(1)
-  ).join(' ');
+  // Check if it's "whole-bus" or a regular spot
+  const isWholeBus = selectedSpot === 'whole-bus';
+  const spotName = isWholeBus 
+    ? 'Whole Bus (All Areas)'
+    : selectedSpot.split('-').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ');
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <div className="mb-4">
         <h2 className="text-slate-800">Cleaning Methods</h2>
         <p className="text-slate-600 text-sm mt-1">For: <span>{spotName}</span></p>
+        {isWholeBus && (
+          <p className="text-red-600 text-xs mt-1">These methods will be applied to all 28 areas</p>
+        )}
       </div>
 
       <div className="space-y-3">

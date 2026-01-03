@@ -1,12 +1,7 @@
 import { useState } from 'react';
-import { DrivingAssistance } from './DrivingAssistance';
-import { TemperatureControl } from './TemperatureControl';
-import { ControlPanel } from './ControlPanel';
-import { RoofManagement } from './RoofManagement';
-import { BusCleaningApp } from './Vacum/BusCleaningApp';
 import { ArrowLeft, Info} from 'lucide-react';
-import './stylesDriver.css';
-import hooverImage from './images/Hoover_Quick_Start_Guide.png';
+import './stylesPassenger.css';
+import coffeeImage from './images/Coffee_Quick_Start_Guide.png';
 
 type MenuItem = {
   id: string;
@@ -23,12 +18,11 @@ type GuideItem = {
 
 const menuItems: MenuItem[] = [
   { id: 'home', label: 'Αρχική', component: () => null },
-  { id: 'driving', label: 'Βοήθεια στην Οδήγηση', component: DrivingAssistance },
-  { id: 'temperature', label: 'Ρύθμιση Θερμοκρασίας', component: TemperatureControl },
-  { id: 'control', label: 'Πίνακας Ελέγχου', component: ControlPanel },
-  { id: 'roof', label: 'Διαχείριση Οροφής', component: RoofManagement },
-  { id: 'robotVacum', label: 'Σκούπα ρομποτ', component: BusCleaningApp}
-];
+  { id: 'view', label: 'Θέα', component: null },
+  { id: 'sights', label: 'Αξιοθέατα', component: null },
+  { id: 'coffeeOrdering', label: 'Παραγγελία Καφέ', component: null },
+  { id: 'tour', label: 'Τουριστική Πλοήγηση', component: null }
+]
 
 const guidesByMenu: Record<string, GuideItem[]> = {
   home: [
@@ -37,7 +31,7 @@ const guidesByMenu: Record<string, GuideItem[]> = {
       description: "Δεν υπάρχουν διαθέσιμες πληροφορίες. Επιλέξτε κάποια ενέργεια από το μενού για να ξεκινήσετε."
     }
   ],
-  driving: [
+  view: [
     {
       id: "quickStartQuide",
       title: "Σύντομες Σημειώσεις Εκκίνησης",
@@ -54,7 +48,7 @@ const guidesByMenu: Record<string, GuideItem[]> = {
       description: null,
     },
   ],
-  temperature: [
+  sights: [
     {
       id: "quickStartQuide",
       title: "Σύντομες Σημειώσεις Εκκίνησης",
@@ -71,7 +65,24 @@ const guidesByMenu: Record<string, GuideItem[]> = {
       description: null,
     },
   ],
-  control: [
+  coffeeOrdering: [
+    {
+      id: "quickStartQuide",
+      title: "Σύντομες Σημειώσεις Εκκίνησης",
+      image: coffeeImage,
+    },
+    {
+      id: "shortReferenceManual",
+      title: "Εγχειρίδιο Σύντομης Αναφοράς",
+      description: "Λίστα Μαγαζιών: \n Επιλέγουμε από πιο μαγαζί θέλουμε να προμυθευτούμε το προϊόν. \n\n Κατάλογος: \n Επιλέγουμε ποιο προϊόν θα αγοράσουμε. \n\n Λίστα στάσεων: Επιλέγουμε σε ποια στάση θα παραλάβουμε τα προϊόντα. \n\n Κουμπύ Πληρωμής: \n Επιλέγουμε τον τρόπο που θα πληρώσουμε. \n\n Πεδία για την Κάρτα: Σημειώνουμε τα στοιχεία της κάρτας μας. \n\n Κουμπί Επιβεβαίωσης: \n Κάνουμε την οριστική πληρωμή και αυτόματα ολοκληρώνεται η παραγγελία. \n\n ",
+    },
+    {
+      id: "fullReferenceManual",
+      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
+      description: "Αναλυτικές Λειτουργίες: \n\n 1. Επιλογή καφετέριας: \n Ο χρήστης θα μπορεί να επιλέξει μέσω ενός χάρτη ένα κατάστημα με βάση την προτίμηση του και τις προσφορές που μπορεί να υπάρχουν με τη χρήση του ανάλογου κουμπιού. \n\n 2. Επιλογή προϊόντων: \n Αφότου ο χρήστης έχει επιλέξει την επιθυμητή καφετέρια, μπορεί πλέον να επιλέξει και τα προϊόντα που επιθυμεί μέσω του καταλόγου που θα εμφανίζεται. Επιλέγωντας προσωρινά τα προϊόντα εμφανίζεται ο εκτιμώμενος χρόνος για παρασκευή και παραλαβή. Αν ο χρήστης συμφωνεί τότε οριστικοποιεί τις επιλογές του με τη χρήση του ανάλογου κουμπιού. \n\n 3.	Επιλογή στάσης: \n Στο σημείο αυτό εμφανίζεται στο χρήστη ο χάρτης με τις διαθέσιμες στάσεις με βάση τον εκτιμώμενο χρόνο παραλαβής και τη διαδρομή του λεωφορείου. Με τη χρήση ενός κουμπιού οριστικοποίησης, ο χρήστης επιλέγει τη στάση παραλαβής των προϊόντων του. \n\n 4.	Ολοκλήρωση παραγγελίας: \n Σε αυτό το στάδιο της εφαρμογής, ο χρήστης οδηγείται σε μια σελίδα στην οποία προβάλλονται οι επιλογές του, τις οποίες επιβεβαιώνει με τη χρήση των ανάλογων κουμπιών. Οδηγείται σε μια ξεχωριστή ιστοσελίδα που επιλέγει το τύπο πληρωμής, καταγράφει τα στοιχεία πληρωμής και όταν αυτά εγκριθούν παραλαμβάνει την ηλεκτρονική απόδειξη. Τέλος, εμφανίζεται το αντίστοιχο χρονόμετρο με τον εκτιμώμενο χρόνο παραλαβής."
+    },
+  ],
+  tour: [
     {
       id: "quickStartQuide",
       title: "Σύντομες Σημειώσεις Εκκίνησης",
@@ -86,35 +97,6 @@ const guidesByMenu: Record<string, GuideItem[]> = {
       id: "fullReferenceManual",
       title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
       description: null,
-    },
-  ],
-  roof: [
-    {
-      id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Πληροφορίες Παραγωγής Ενέργειας: \n Διαρκής ενημέρωση για την ενέργεια. \n\n Πληροφοτίες Φωτοβολταϊκών: \n Ενημερώνει για την κατάσταση των πανελ. \n\n Στατιστικά: \n Παράγει και εμφανίζει στατιστικά δεδομένα.",
-    },
-    {
-      id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές Λειτουργίες: \n\n 1. Διαχείριση Οροφής και Ενέργειας: \n Τα δεδομένα ενημερώνονται ανά συχνά χρονικά διαστήματα ώστε ο χρήστης να μπορεί να καταλάβει αν βοηθά στην παραγωγή ενέργειας ή αν καταναλώνει την ήδη υπάρχουσα. \n\n 2. Κατάσταση Φωτοβολταϊκών: \n Ο χρήστης μπορεί να ενημερωθεί για την κατάσταση της μπαταρίας και τη λειτουργία κάθε πανελ ξεχωριστά \n\n 3. Στατιστικά: \n Ο χρήστης μπορεί να ενημερωθεί για τα στατιστικά της ενέργειας που παράχθηκε καθώς και αυτής που καταναλώθηκε από το λεωφορείο και να εξάγει συμπεράσματα ώστε να βελτιώσει την αξιοποίηση των διαθέσιμων πόρων.",
-    },
-  ],
-  robotVacum: [
-    {
-      id: "quickStartQuide",
-      title: "Σύντομες Σημειώσεις Εκκίνησης",
-      image: hooverImage,
-    },
-    {
-      id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Χάρτης: \n Προβολή κάτοψης του εσωτερικού του λεωφορείου.\n\n Μενού επιλογών: \n Προβάλλει τις διαθέσιμες επιλογές καθαρισμού.\n\n Επιβεβαίωση: \n Οριστικοποιεί τις επιλογές του χρήστη.\n\n Χρονόμετρο: \n Αντίστροφη μέτρηση του χρόνου περάτωσης του καθαρισμού.",
-    },
-    {
-      id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές λειτουργίες: \n\n 1.	Επιλογή σημείων καθαρισμού από χάρτη: \n Ο χρήστης έχει τη δυνατότητα να επιλέξει από το χάρτη συγκεκριμένα σημεία καθαρισμού. Οι επιλογές θα είναι προκαθορισμένες με βάση σημεία σε ένα imap που θα αντικατοπτρίζει την κάτοψη του λεωφορείου. Αυτές μπορεί να είναι το δάπεδο, οι σκάλες,  τα καθίσματα, τα τζάμια ή ολόκληρο το λεωφορείο. \n\n 2.	Επιλογή μεθόδου καθαρισμού: \n Αφού ο χρήστης έχει επιλέξει τα σημεία καθαρισμού, η εφαρμογή του δίνει μια λίστα με επιλογές για τον τρόπο καθαρισμού, δηλαδή απλό σκούπισμα, βιολογικός καθαρισμός ή καθαρισμός του εξωτερικού του λεωφορείου. \n\n 3.	Εκτιμώμενος χρόνος και διεκπεραίωση: \n Στο σημείο αυτό υπολογίζεται ο εκτιμώμενος χρόνος διεκπεραίωσης της διαδικασίας και εφόσον ο χρήστης εγκρίνει, ξεκινάει η διαδικασία του καθαρισμού. Διαφορετικά, ο χρήστης υποβάλλει τις αλλαγές που επιθυμεί. \n\n 4.	Αναφορά ευρημάτων: \n Η σκούπα ενημερώνει μέσω της εφαρμογής την εταιρεία για την εύρεση τα οποία αντιλαμβάνεται ως σημαντικά."
     },
   ],
 };
@@ -187,11 +169,11 @@ function RightSidebarGuide({ guides }: { guides: GuideItem[] }) {
   );
 }
 
-interface MenuDriverAppProps {
+interface MenuPassengerAppProps {
   onBack: () => void;
 }
 
-export function MenuDriverApp({ onBack }: MenuDriverAppProps) {
+export function MenuPassengerApp({ onBack }: MenuPassengerAppProps) {
   const [activeMenu, setActiveMenu] = useState<string>('home');
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
@@ -244,7 +226,6 @@ export function MenuDriverApp({ onBack }: MenuDriverAppProps) {
             style={{ marginLeft: "auto" }}
             className='bus-info'
             onClick={() => {
-              const left = isLeftSidebarOpen;
               setIsRightSidebarOpen(!isRightSidebarOpen); 
               setIsLeftSidebarOpen(isRightSidebarOpen);
             }}
@@ -263,7 +244,13 @@ export function MenuDriverApp({ onBack }: MenuDriverAppProps) {
       <aside className={`bus-right-sidebar ${isRightSidebarOpen ? 'right-open' : 'right-closed'}`}>
       <div className="bus-right-sidebar-content">
           <h2  style={{ fontWeight: "bold"}}>ΠΛΗΡΟΦΟΡΙΕΣ</h2>
-          <RightSidebarGuide guides={guidesByMenu[activeMenu]}/>          
+          {guidesByMenu[activeMenu] ? (
+            <RightSidebarGuide guides={guidesByMenu[activeMenu]}/>
+          ) : (
+            <p>Δεν υπάρχουν διαθέσιμες πληροφορίες.</p>
+          )}
+
+          
       </div>
       </aside>
     </div>

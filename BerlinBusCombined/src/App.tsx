@@ -1,27 +1,20 @@
 import { useState } from 'react';
 import { Users, User } from 'lucide-react';
 import { MenuDriverApp } from './components/MenuDriver/MenuDriverApp';
+import { MenuPassengerApp } from './components/MenuPassenger/MenuPassengerApp';
 
 type AppView = 'main' | 'driver' | 'passenger';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<AppView>('main');
 
-  // if (currentView === 'bus') {
-  //   return <BusCleaningApp onBack={() => setCurrentView('menu')} />;
-  // }
-
-  // if (currentView === 'coffee'){
-  //   return <CoffeeOrderingApp onBack={() => setCurrentView('menu')}/>
-  // }
-
   if (currentView === 'driver'){
     return <MenuDriverApp onBack={() => setCurrentView('main')}/>
   }
 
-  // if (currentView === 'passenger'){
-  //   return <MenuDriverApp onBack={() => setCurrentView('main')}/>
-  // }
+  if (currentView === 'passenger'){
+    return <MenuPassengerApp onBack={() => setCurrentView('main')}/>
+  }
 
   // Main menu
   return (

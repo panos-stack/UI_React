@@ -21,12 +21,12 @@ const methodNames: Record<string, string> = {
 };
 
 const methodTimes: Record<string, Number> = {
-  'basic-wash': 5,
-  'deep-clean': 5,
-  'polish': 5,
-  'sanitize': 5,
-  'pressure-wash': 5,
-  'detail': 5
+  'basic-wash': 1,
+  'deep-clean': 3,
+  'polish': 10,
+  'sanitize': 8,
+  'pressure-wash': 2,
+  'detail': 6
 };
 
 export function SelectionSummary({ selections, onClearAll, onClear, onStartCleaning, appState, totalTime, remainingTime }: SelectionSummaryProps) {

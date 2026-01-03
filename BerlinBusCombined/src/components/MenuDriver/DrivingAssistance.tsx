@@ -183,7 +183,7 @@ export function DrivingAssistance() {
           <div className="bus-demo-controls">
             <button
               onClick={() =>
-                setSpeed(speed > speedLimit ? 55 : 75)
+                setSpeed(speed > speedLimit ? 55 : 65)
               }
               className="bus-btn bus-btn-secondary"
             >
