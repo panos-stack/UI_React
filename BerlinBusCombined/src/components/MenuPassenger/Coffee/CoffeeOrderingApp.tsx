@@ -7,7 +7,8 @@ import { BusStopSelection } from './BusStopSelection';
 import { Checkout } from './Checkout';
 import { OrderConfirmation } from './OrderConfirmation';
 import { CoffeeShop, Drink, CartItem, BusStop } from './types';
-import { coffeeShops, drinks, busStops, paymentCards } from './data/mockData';
+import { coffeeShops, drinks, busStops } from './data/mockData';
+import './index2.css';
 
 type AppState =
   | 'shop-selection'
@@ -120,79 +121,68 @@ export function CoffeeOrderingApp({ onBack }: CoffeeOrderingAppProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 p-8">
-        <div className="max-w-7xl mx-auto">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors mb-8"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Menu
-          </button>
-        
+      <div className="max-w-7xl mx-auto">
+        <div className="min-h-screen bg-gray-50">
+          {appState !== 'order-confirmed' && (
+            <Header cartItemsCount={totalCartItems} onViewCart={() => setShowCart(true)} />
+          )}
 
-      <div className="min-h-screen bg-gray-50">
-        {appState !== 'order-confirmed' && (
-          <Header cartItemsCount={totalCartItems} onViewCart={() => setShowCart(true)} />
-        )}
+          {appState === 'shop-selection' && (
+            <ShopSelection shops={coffeeShops} onSelectShop={handleSelectShop} />
+          )}
 
-        {appState === 'shop-selection' && (
-          <ShopSelection shops={coffeeShops} onSelectShop={handleSelectShop} />
-        )}
+          {appState === 'drink-menu' && selectedShop && (
+            <DrinkMenu
+              shop={selectedShop}
+              drinks={drinks}
+              onBack={handleBackToShopSelection}
+              onAddToCart={handleAddToCart}
+            />
+          )}
 
-        {appState === 'drink-menu' && selectedShop && (
-          <DrinkMenu
-            shop={selectedShop}
-            drinks={drinks}
-            onBack={handleBackToShopSelection}
-            onAddToCart={handleAddToCart}
-          />
-        )}
+          {appState === 'bus-stop-selection' && (
+            <BusStopSelection
+              busStops={busStops}
+              selectedStop={selectedBusStop}
+              onSelectStop={handleSelectBusStop}
+              onContinue={handleContinueToCheckout}
+              onBackToMenu={() => {
+                if (selectedShop) {
+                  setAppState('drink-menu');
+                }
+              }}
+              onBackToShops={() => setAppState('shop-selection')}
+            />
+          )}
 
-        {appState === 'bus-stop-selection' && (
-          <BusStopSelection
-            busStops={busStops}
-            selectedStop={selectedBusStop}
-            onSelectStop={handleSelectBusStop}
-            onContinue={handleContinueToCheckout}
-            onBackToMenu={() => {
-              if (selectedShop) {
-                setAppState('drink-menu');
-              }
-            }}
-            onBackToShops={() => setAppState('shop-selection')}
-          />
-        )}
+          {appState === 'checkout' && selectedBusStop && (
+            <Checkout
+              items={cartItems}
+              selectedStop={selectedBusStop}
+              onBack={handleBackToBusStopSelection}
+              onPlaceOrder={handlePlaceOrder}
+            />
+          )}
 
-        {appState === 'checkout' && selectedBusStop && (
-          <Checkout
-            items={cartItems}
-            selectedStop={selectedBusStop}
-            onBack={handleBackToBusStopSelection}
-            onPlaceOrder={handlePlaceOrder}
-          />
-        )}
+          {appState === 'order-confirmed' && selectedBusStop && (
+            <OrderConfirmation
+              orderNumber={orderNumber}
+              selectedStop={selectedBusStop}
+              onNewOrder={handleNewOrder}
+            />
+          )}
 
-        {appState === 'order-confirmed' && selectedBusStop && (
-          <OrderConfirmation
-            orderNumber={orderNumber}
-            selectedStop={selectedBusStop}
-            onNewOrder={handleNewOrder}
-          />
-        )}
-
-        {showCart && (
-          <Cart
-            items={cartItems}
-            onClose={() => setShowCart(false)}
-            onUpdateQuantity={handleUpdateQuantity}
-            onRemoveItem={handleRemoveItem}
-            onProceedToDelivery={handleProceedToDelivery}
-          />
-        )}
+          {showCart && (
+            <Cart
+              items={cartItems}
+              onClose={() => setShowCart(false)}
+              onUpdateQuantity={handleUpdateQuantity}
+              onRemoveItem={handleRemoveItem}
+              onProceedToDelivery={handleProceedToDelivery}
+            />
+          )}
+        </div>
       </div>
     </div>
-  </div>
   );
 }

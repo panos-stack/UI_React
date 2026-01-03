@@ -120,7 +120,7 @@ export function BusStopSelection({
             onClick={onBackToMenu}
             className="px-8 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            Back to Menu
+            Back to Coffee Selection
           </button>
         </div>
         {selectedStop && (

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowLeft, Info} from 'lucide-react';
+import { CoffeeOrderingApp } from './Coffee/CoffeeOrderingApp';
 import './stylesPassenger.css';
 import coffeeImage from './images/Coffee_Quick_Start_Guide.png';
 
@@ -20,7 +21,7 @@ const menuItems: MenuItem[] = [
   { id: 'home', label: 'Αρχική', component: () => null },
   { id: 'view', label: 'Θέα', component: null },
   { id: 'sights', label: 'Αξιοθέατα', component: null },
-  { id: 'coffeeOrdering', label: 'Παραγγελία Καφέ', component: null },
+  { id: 'coffeeOrdering', label: 'Παραγγελία Καφέ', component: CoffeeOrderingApp },
   { id: 'tour', label: 'Τουριστική Πλοήγηση', component: null }
 ]
 
