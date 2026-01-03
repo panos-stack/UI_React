@@ -7,6 +7,7 @@ import { BusCleaningApp } from './Vacum/BusCleaningApp';
 import { ArrowLeft, Info} from 'lucide-react';
 import './stylesDriver.css';
 import hooverImage from './images/Hoover_Quick_Start_Guide.png';
+import BusDrivingGif from './images/wmremove-transformed.gif';
 
 type MenuItem = {
   id: string;
@@ -122,8 +123,11 @@ const guidesByMenu: Record<string, GuideItem[]> = {
 function HomePage() {
   return (
     <div className="bus-home-page">
-      <h1>Σύστημα Διαχείρισης Λεωφορείου</h1>
-      <p>Επιλέξτε μια λειτουργία από το μενού</p>
+      {/* <h1></h1>
+       */}
+      <h1> Σύστημα Διαχείρισης Λεωφορείου </h1>
+      <h2>Επιλέξτε μια λειτουργία από το μενού </h2>
+      <p> <img src={BusDrivingGif} style={{ height: "700px" }}/> </p>
     </div>
   );
 }
@@ -147,7 +151,7 @@ function RightSidebarGuide({ guides }: { guides: GuideItem[] }) {
       {guides.map(guide => (
         <div key={guide.id} className="guide-item">
           <h3 style={{fontWeight: "bold"}}>{guide.title}</h3>
-          <p>{guide.description}</p>
+          <p> {guide.description} </p>
           {guide.image && (
 
             <div 
