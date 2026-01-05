@@ -34,11 +34,6 @@ const guidesByMenu: Record<string, GuideItem[]> = {
   ],
   view: [
     {
-      id: "quickStartQuide",
-      title: "Σύντομες Σημειώσεις Εκκίνησης",
-      image: null,
-    },
-    {
       id: "shortReferenceManual",
       title: "Εγχειρίδιο Σύντομης Αναφοράς",
       description: null,
@@ -50,11 +45,6 @@ const guidesByMenu: Record<string, GuideItem[]> = {
     },
   ],
   sights: [
-    {
-      id: "quickStartQuide",
-      title: "Σύντομες Σημειώσεις Εκκίνησης",
-      image: null,
-    },
     {
       id: "shortReferenceManual",
       title: "Εγχειρίδιο Σύντομης Αναφοράς",
@@ -84,11 +74,6 @@ const guidesByMenu: Record<string, GuideItem[]> = {
     },
   ],
   tour: [
-    {
-      id: "quickStartQuide",
-      title: "Σύντομες Σημειώσεις Εκκίνησης",
-      image: null,
-    },
     {
       id: "shortReferenceManual",
       title: "Εγχειρίδιο Σύντομης Αναφοράς",

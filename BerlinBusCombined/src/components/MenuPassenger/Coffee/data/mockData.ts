@@ -1,4 +1,17 @@
 import { CoffeeShop, Drink, BusStop, PaymentCard } from '../types';
+import Brew_Haven from './images/Brew_Haven.jpg';
+import City_Roasters from './images/City_Roasters.webp';
+import Express_Coffee_Co from './images/Express_Coffee_Co.jpg';
+import The_Daily_Grind from './images/The_Daily_Grind.jpg';
+import Latte from './images/Latte.jpg';
+import Cappuccino from './images/Cappuccino.jpg';
+import Espresso from './images/Espresso.jpg';
+import Americano from './images/Americano.jpg';
+import Mocha from './images/Mocha.webp';
+import Iced_Latte from './images/Iced_Latte.jpg';
+import Cold_Brew from './images/Cold_Brew.jpg';
+import Flat_White from './images/Flat_White.jpg';
+import Freedo_Espresso from './images/Freedo_Espresso.webp';
 
 export const coffeeShops: CoffeeShop[] = [
   {
@@ -7,7 +20,7 @@ export const coffeeShops: CoffeeShop[] = [
     logo: '☕',
     rating: 4.8,
     deliveryTime: '10-15 min',
-    image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBzaG9wJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzY0NzI2NDUyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: Brew_Haven,
   },
   {
     id: '2',
@@ -15,7 +28,7 @@ export const coffeeShops: CoffeeShop[] = [
     logo: '🏙️',
     rating: 4.6,
     deliveryTime: '12-18 min',
-    image: 'https://perfectdailygrind.com/wp-content/uploads/2020/09/Marco-Covid-2.jpg',
+    image: City_Roasters,
   },
   {
     id: '3',
@@ -23,7 +36,7 @@ export const coffeeShops: CoffeeShop[] = [
     logo: '⚡',
     rating: 4.9,
     deliveryTime: '8-12 min',
-    image: 'https://tekacleaning.co.uk/wp-content/uploads/2024/10/nafinia-putra-Kwdp-0pok-I-unsplash-1.jpg',
+    image: Express_Coffee_Co,
   },
   {
     id: '4',
@@ -31,7 +44,7 @@ export const coffeeShops: CoffeeShop[] = [
     logo: '☀️',
     rating: 4.7,
     deliveryTime: '10-15 min',
-    image: 'https://www.greenqueen.com.hk/wp-content/uploads/2023/09/clean-coffee-cynthia-lok-hong-kong-sustainable-green-queen-6-1024x682.jpg',
+    image: The_Daily_Grind,
   },
 ];
 
@@ -41,7 +54,7 @@ export const drinks: Drink[] = [
     name: 'Caffe Latte',
     description: 'Rich espresso with steamed milk and a light layer of foam',
     price: 4.50,
-    image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBsYXR0ZSUyMGFydHxlbnwxfHx8fDE3NjQ3NDQzNzR8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: Latte,
     category: 'Hot Coffee',
     sizes: ['Small', 'Medium', 'Large'],
   },
@@ -50,7 +63,7 @@ export const drinks: Drink[] = [
     name: 'Cappuccino',
     description: 'Espresso with equal parts steamed milk and foam',
     price: 4.25,
-    image: 'https://images.unsplash.com/photo-1638202448050-bddae16dd9be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXBwdWNjaW5vJTIwY3VwfGVufDF8fHx8MTc2NDcyNTczNHww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: Cappuccino,
     category: 'Hot Coffee',
     sizes: ['Small', 'Medium', 'Large'],
   },
@@ -59,7 +72,7 @@ export const drinks: Drink[] = [
     name: 'Espresso',
     description: 'Strong and bold shot of pure coffee',
     price: 3.00,
-    image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlc3ByZXNzbyUyMGNvZmZlZXxlbnwxfHx8fDE3NjQ3NTEyNzh8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: Espresso,
     category: 'Hot Coffee',
     sizes: ['Single', 'Double'],
   },
@@ -68,7 +81,7 @@ export const drinks: Drink[] = [
     name: 'Americano',
     description: 'Espresso diluted with hot water for a smooth taste',
     price: 3.75,
-    image: 'https://loveincrediblerecipes.com/wp-content/uploads/2023/12/nespresso-americano-1200x1200-1.jpg',
+    image: Americano,
     category: 'Hot Coffee',
     sizes: ['Small', 'Medium', 'Large'],
   },
@@ -77,7 +90,7 @@ export const drinks: Drink[] = [
     name: 'Mocha',
     description: 'Espresso with chocolate syrup and steamed milk',
     price: 5.00,
-    image: 'https://hoxtoncoffee.com/cdn/shop/articles/latte-art-on-mocha_1200x1200.jpg?v=1660069726',
+    image: Mocha,
     category: 'Hot Coffee',
     sizes: ['Small', 'Medium', 'Large'],
   },
@@ -86,7 +99,7 @@ export const drinks: Drink[] = [
     name: 'Iced Latte',
     description: 'Chilled espresso with cold milk over ice',
     price: 4.75,
-    image: 'https://images.ctfassets.net/v601h1fyjgba/4GLzOncHIe8rq3xY099cZ/dd17ce72ebb6fb01659c763fe64953db/Iced_Latte.jpg',
+    image: Iced_Latte,
     category: 'Cold Coffee',
     sizes: ['Small','Medium', 'Large'],
   },
@@ -95,7 +108,7 @@ export const drinks: Drink[] = [
     name: 'Cold Brew',
     description: 'Smooth, slow-steeped coffee served over ice',
     price: 4.50,
-    image: 'https://lifesimplified.gorenje.com/wp-content/uploads/2024/06/gorenje-blog-refreshing_cold_brew_coffee.jpg',
+    image: Cold_Brew,
     category: 'Cold Coffee',
     sizes: ['Small','Medium', 'Large'],
   },
@@ -104,7 +117,7 @@ export const drinks: Drink[] = [
     name: 'Flat White',
     description: 'Velvety microfoam over espresso',
     price: 4.50,
-    image: 'https://www.coffeebean.com/cdn/shop/files/product_classic_flatwhite_530x430_07fc0eb3-3bdb-43ef-8495-e1a8c6b839d9.jpg?v=1736534960',
+    image: Flat_White,
     category: 'Hot Coffee',
     sizes: ['Small', 'Medium'],
   },
@@ -113,7 +126,7 @@ export const drinks: Drink[] = [
     name: 'Freedo Espresso',
     description: 'Strong and bold espresso',
     price: 2.50,
-    image: 'https://ruste.gr/wp-content/uploads/2024/01/freddo-espresso-1-1-sintagi.webp',
+    image: Freedo_Espresso,
     category: 'Cold Coffee',
     sizes: ['Small', 'Medium'],
   },
