@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { ArrowLeft, Info} from 'lucide-react';
 import { CoffeeOrderingApp } from './Coffee/CoffeeOrderingApp';
-import './stylesPassenger.css';
+import { DriverView } from './DriverView';
+import { HistoricalSights } from './HistoricalSights';
+import { MapView } from './MapView';
+import './theme.css';
+
 import coffeeImage from './images/Coffee_Quick_Start_Guide.png';
 
 type MenuItem = {
@@ -18,21 +22,14 @@ type GuideItem = {
 };
 
 const menuItems: MenuItem[] = [
-  { id: 'home', label: 'Αρχική', component: () => null },
-  { id: 'view', label: 'Θέα', component: null },
-  { id: 'sights', label: 'Αξιοθέατα', component: null },
+  { id: 'home', label: 'Αρχική', component: DriverView },
+  { id: 'sights', label: 'Αξιοθέατα', component: HistoricalSights },
   { id: 'coffeeOrdering', label: 'Παραγγελία Καφέ', component: CoffeeOrderingApp },
-  { id: 'tour', label: 'Τουριστική Πλοήγηση', component: null }
+  { id: 'tour', label: 'Τουριστική Πλοήγηση', component: MapView }
 ]
 
 const guidesByMenu: Record<string, GuideItem[]> = {
   home: [
-    {
-      id: "noInfo",
-      description: "Δεν υπάρχουν διαθέσιμες πληροφορίες. Επιλέξτε κάποια ενέργεια από το Μενού για να ξεκινήσετε."
-    }
-  ],
-  view: [
     {
       id: "shortReferenceManual",
       title: "Εγχειρίδιο Σύντομης Αναφοράς",
@@ -87,14 +84,14 @@ const guidesByMenu: Record<string, GuideItem[]> = {
   ],
 };
 
-function HomePage() {
-  return (
-    <div className="bus-home-page">
-      <h1>Σύστημα Διαχείρισης Λεωφορείου</h1>
-      <p>Επιλέξτε μια λειτουργία από το μενού</p>
-    </div>
-  );
-}
+// function HomePage() {
+//   return (
+//     <div className="bus-home-page">
+//       <h1>Σύστημα Διαχείρισης Λεωφορείου</h1>
+//       <p>Επιλέξτε μια λειτουργία από το μενού</p>
+//     </div>
+//   );
+// }
 
 function MenuIcon() {
   return (
@@ -164,7 +161,7 @@ export function MenuPassengerApp({ onBack }: MenuPassengerAppProps) {
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
   const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
 
-  const ActiveComponent = menuItems.find(item => item.id === activeMenu)?.component || HomePage;
+  const ActiveComponent = menuItems.find(item => item.id === activeMenu)?.component || DriverView;
 
   return (
     <div className="bus-app-container">
@@ -222,7 +219,7 @@ export function MenuPassengerApp({ onBack }: MenuPassengerAppProps) {
 
         {/* Content Area */}
         <main className="bus-content-area">
-          {activeMenu === 'home' ? <HomePage /> : <ActiveComponent />}
+          {activeMenu === 'home' ? <DriverView /> : <ActiveComponent />}
         </main>
       </div>
 
