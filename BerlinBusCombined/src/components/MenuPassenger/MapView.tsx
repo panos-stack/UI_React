@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import L from "leaflet";
+import 'leaflet/dist/leaflet.css';
 import { Navigation, Utensils, MapPin, Info, Bus } from "lucide-react";
 
 interface BusStop {
@@ -51,9 +52,10 @@ export function MapView() {
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
-    // Initialize map
-    const map = L.map(mapContainerRef.current).setView([52.5194, 13.3930], 14);
+    const map = L.map(mapContainerRef.current, {preferCanvas: true,}).setView([52.5194, 13.3930], 14);
     mapRef.current = map;
+
+    setTimeout(() => {map.invalidateSize();}, 0);
 
     // Add tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -151,69 +153,65 @@ export function MapView() {
   }, [showRoute]);
 
   return (
-    <div className="berlin-map-view h-full flex flex-col bg-gray-50">
-      <div className="berlin-map-header bg-white border-b px-8 py-6">
-        <h2 className="text-3xl font-bold text-gray-900">Interactive Map</h2>
-        <p className="text-gray-600 mt-2">
-          Explore stops, restaurants, and navigation routes
-        </p>
+    <div className="lego-berlin-map-view">
+      <div className="lego-berlin-map-header">
+        <h2>Interactive Map</h2>
+        <p>Explore stops, restaurants, and navigation routes</p>
       </div>
 
-      <div className="flex-1 flex">
+      <div className="lego-flex">
         {/* Sidebar */}
-        <div className="berlin-map-sidebar w-96 bg-white border-r overflow-y-auto">
-          <div className="p-6">
+        <div className="lego-berlin-map-sidebar">
+          <div>
             {/* Controls */}
-            <div className="mb-6">
-              <h3 className="berlin-map-controls-title font-semibold text-gray-900 mb-3">Map Controls</h3>
-              <div className="space-y-2">
-                <label className="berlin-map-control-item flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100">
+            <div>
+              <h3 className="lego-berlin-map-controls-title">Map Controls</h3>
+              <div>
+                <label className="lego-berlin-map-control-item">
                   <input
                     type="checkbox"
                     checked={showRestaurants}
                     onChange={(e) => setShowRestaurants(e.target.checked)}
-                    className="w-4 h-4 text-blue-600"
                   />
-                  <Utensils className="w-5 h-5 text-red-600" />
-                  <span className="text-sm font-medium">Show Restaurants</span>
+                  <Utensils className="lego-w-5 lego-h-5 lego-text-red-600" />
+                  <span>Show Restaurants</span>
                 </label>
                 
-                <label className="berlin-map-control-item flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100">
+                <label className="lego-berlin-map-control-item">
                   <input
                     type="checkbox"
                     checked={showRoute}
                     onChange={(e) => setShowRoute(e.target.checked)}
-                    className="w-4 h-4 text-blue-600"
                   />
-                  <Bus className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium">Show Bus Route</span>
+                  <Bus className="lego-w-5 lego-h-5 lego-text-blue-600" />
+                  <span>Show Bus Route</span>
                 </label>
               </div>
             </div>
 
             {/* Bus Stops */}
-            <div className="mb-6">
-              <h3 className="berlin-map-section-title font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-blue-600" />
+            <div>
+              <h3 className="lego-berlin-map-section-title">
+                <MapPin className="lego-w-5 lego-h-5 lego-text-blue-600" />
                 Bus Stops
               </h3>
-              <div className="berlin-map-stops-list space-y-2">
+              <div className="lego-berlin-map-stops-list">
                 {busStops.map((stop) => (
                   <button
                     key={stop.id}
                     onClick={() => setSelectedStop(stop)}
-                    className={`berlin-map-stop-item w-full text-left p-4 rounded-lg border-2 transition-all ${
+                    className={`lego-berlin-map-stop-item ${
                       selectedStop?.id === stop.id
-                        ? "berlin-map-stop-selected border-blue-500 bg-blue-50"
-                        : "berlin-map-stop-default border-gray-200 hover:border-blue-300 bg-white"
+                        ? "lego-berlin-map-stop-selected"
+                        : "lego-berlin-map-stop-default"
                     }`}
                   >
-                    <div className="flex items-start justify-between">
+                    <div>
                       <div>
-                        <h4 className="berlin-map-stop-name font-medium text-gray-900">{stop.name}</h4>
-                        <p className="berlin-map-stop-number text-sm text-gray-500 mt-1">Stop #{stop.id}</p>
+                        <h4 className="lego-berlin-map-stop-name">{stop.name}</h4>
+                        <p className="lego-berlin-map-stop-number">Stop #{stop.id}</p>
                       </div>
-                      <span className="berlin-map-stop-time text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                      <span className="lego-berlin-map-stop-time">
                         {stop.arrivalTime}
                       </span>
                     </div>
@@ -224,23 +222,23 @@ export function MapView() {
 
             {/* Nearby Restaurants */}
             <div>
-              <h3 className="berlin-map-section-title font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <Utensils className="w-5 h-5 text-red-600" />
+              <h3 className="lego-berlin-map-section-title">
+                <Utensils className="lego-w-5 lego-h-5 lego-text-red-600" />
                 Nearby Restaurants
               </h3>
-              <div className="berlin-map-restaurants-list space-y-3">
+              <div className="lego-berlin-map-restaurants-list">
                 {restaurants.map((restaurant) => (
                   <div
                     key={restaurant.id}
-                    className="berlin-map-restaurant-item p-4 bg-white border border-gray-200 rounded-lg"
+                    className="lego-berlin-map-restaurant-item"
                   >
-                    <h4 className="berlin-map-restaurant-name font-medium text-gray-900">{restaurant.name}</h4>
-                    <p className="berlin-map-restaurant-cuisine text-sm text-gray-500 mt-1">{restaurant.cuisine}</p>
-                    <div className="berlin-map-restaurant-meta flex items-center justify-between mt-2">
-                      <span className="berlin-map-restaurant-rating text-sm text-yellow-600 font-medium">
+                    <h4 className="lego-berlin-map-restaurant-name">{restaurant.name}</h4>
+                    <p className="lego-berlin-map-restaurant-cuisine">{restaurant.cuisine}</p>
+                    <div className="lego-berlin-map-restaurant-meta">
+                      <span className="lego-berlin-map-restaurant-rating">
                         ⭐ {restaurant.rating}
                       </span>
-                      <span className="berlin-map-restaurant-distance text-xs text-gray-500">{restaurant.distance}</span>
+                      <span className="lego-berlin-map-restaurant-distance">{restaurant.distance}</span>
                     </div>
                   </div>
                 ))}
@@ -250,54 +248,54 @@ export function MapView() {
         </div>
 
         {/* Map */}
-        <div className="berlin-map-container flex-1 relative">
+        <div className="lego-berlin-map-container">
           <div
             ref={mapContainerRef}
             style={{ height: "100%", width: "100%" }}
-            className="berlin-map-canvas z-0"
+            className="lego-berlin-map-canvas"
           ></div>
 
           {/* Legend */}
-          <div className="berlin-map-legend absolute bottom-6 right-6 bg-white rounded-xl shadow-lg p-4 z-[1000]">
-            <h4 className="berlin-map-legend-title font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <Info className="w-4 h-4" />
+          <div className="lego-berlin-map-legend">
+            <h4 className="lego-berlin-map-legend-title">
+              <Info className="lego-w-4 lego-h-4" />
               Legend
             </h4>
-            <div className="berlin-map-legend-items space-y-2 text-sm">
-              <div className="berlin-map-legend-item flex items-center gap-2">
-                <div className="berlin-map-legend-marker w-4 h-4 bg-blue-600 rounded-full"></div>
-                <span className="text-gray-700">Bus Stops</span>
+            <div className="lego-berlin-map-legend-items">
+              <div className="lego-berlin-map-legend-item">
+                <div className="lego-berlin-map-legend-marker lego-bg-blue-600"></div>
+                <span>Bus Stops</span>
               </div>
-              <div className="berlin-map-legend-item flex items-center gap-2">
-                <div className="berlin-map-legend-marker w-4 h-4 bg-red-600 rounded-full"></div>
-                <span className="text-gray-700">Restaurants</span>
+              <div className="lego-berlin-map-legend-item">
+                <div className="lego-berlin-map-legend-marker lego-bg-red-600"></div>
+                <span>Restaurants</span>
               </div>
-              <div className="berlin-map-legend-item flex items-center gap-2">
-                <div className="berlin-map-legend-route w-8 h-0.5 bg-blue-600" style={{ borderTop: "3px dashed #3B82F6" }}></div>
-                <span className="text-gray-700">Bus Route</span>
+              <div className="lego-berlin-map-legend-item">
+                <div className="lego-berlin-map-legend-route" style={{ borderTop: "3px dashed #3B82F6" }}></div>
+                <span>Bus Route</span>
               </div>
             </div>
           </div>
 
           {/* Selected Stop Info */}
           {selectedStop && (
-            <div className="berlin-map-stop-detail absolute top-6 left-6 bg-white rounded-xl shadow-lg p-6 z-[1000] max-w-sm">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="berlin-map-stop-detail-name font-bold text-xl text-gray-900">{selectedStop.name}</h3>
+            <div className="lego-berlin-map-stop-detail">
+              <div>
+                <h3 className="lego-berlin-map-stop-detail-name">{selectedStop.name}</h3>
                 <button
                   onClick={() => setSelectedStop(null)}
-                  className="berlin-map-stop-close text-gray-400 hover:text-gray-600"
+                  className="lego-berlin-map-stop-close"
                 >
                   ✕
                 </button>
               </div>
-              <p className="berlin-map-stop-detail-info text-sm text-gray-600 mb-3">Stop #{selectedStop.id} on the tour route</p>
-              <div className="berlin-map-stop-detail-arrival flex items-center gap-2 text-blue-600 mb-4">
-                <Navigation className="w-4 h-4" />
-                <span className="text-sm font-medium">Arrival: {selectedStop.arrivalTime}</span>
+              <p className="lego-berlin-map-stop-detail-info">Stop #{selectedStop.id} on the tour route</p>
+              <div className="lego-berlin-map-stop-detail-arrival">
+                <Navigation className="lego-w-4 lego-h-4" />
+                <span>Arrival: {selectedStop.arrivalTime}</span>
               </div>
-              <button className="berlin-map-stop-directions w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
-                <Navigation className="w-4 h-4" />
+              <button className="lego-berlin-map-stop-directions">
+                <Navigation className="lego-w-4 lego-h-4" />
                 Get Directions Back
               </button>
             </div>

@@ -4,7 +4,7 @@ import { CoffeeOrderingApp } from './Coffee/CoffeeOrderingApp';
 import { DriverView } from './DriverView';
 import { HistoricalSights } from './HistoricalSights';
 import { MapView } from './MapView';
-import './theme.css';
+import './stylesPassenger.css';
 
 import coffeeImage from './images/Coffee_Quick_Start_Guide.png';
 
