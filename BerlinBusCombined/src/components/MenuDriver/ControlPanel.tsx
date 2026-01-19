@@ -74,9 +74,9 @@ export function ControlPanel() {
   return (
     <div>
       <div className="bus-card">
-        <h2>Πίνακας Ελέγχου Κλιματισμού</h2>
+        <h2>Air-Coinditioning Control Panel</h2>
         <p className="bus-card-description">
-          Επιλογές για ψύξη ή θέρμανση
+          Cooling or heating options.
         </p>
 
         {/* Main Controls */}
@@ -89,15 +89,15 @@ export function ControlPanel() {
                   <SnowflakeIcon className="bus-icon bus-icon-blue" />
                 </div>
                 <div>
-                  <h3 className="bus-mb-1">Ψύξη</h3>
-                  <p className="bus-text-sm bus-text-muted">Κλιματισμός</p>
+                  <h3 className="bus-mb-1">Cooling</h3>
+                  <p className="bus-text-sm bus-text-muted">Air-Conditioning</p>
                 </div>
               </div>
               <Switch checked={coolingEnabled} onChange={handleCoolingToggle} />
             </div>
             {coolingEnabled && (
               <div className="bus-pt-4 bus-border-t">
-                <p className="bus-status-text bus-status-active">✓ Ενεργοποιημένο</p>
+                <p className="bus-status-text bus-status-active">✓ Activated</p>
               </div>
             )}
           </div>
@@ -110,15 +110,15 @@ export function ControlPanel() {
                   <FlameIcon className="bus-icon bus-icon-orange" />
                 </div>
                 <div>
-                  <h3 className="bus-mb-1">Θέρμανση</h3>
-                  <p className="bus-text-sm bus-text-muted">Καλοριφέρ</p>
+                  <h3 className="bus-mb-1">Heating</h3>
+                  <p className="bus-text-sm bus-text-muted">Radiator</p>
                 </div>
               </div>
               <Switch checked={heatingEnabled} onChange={handleHeatingToggle} />
             </div>
             {heatingEnabled && (
               <div className="bus-pt-4 bus-border-t">
-                <p className="bus-status-text bus-status-active">✓ Ενεργοποιημένο</p>
+                <p className="bus-status-text bus-status-active">✓ Activated</p>
               </div>
             )}
           </div>
@@ -128,26 +128,26 @@ export function ControlPanel() {
         <div className="bus-stat-card bus-mb-6">
           <div className="bus-flex bus-items-center bus-gap-3 bus-mb-4">
             <WindIcon className="bus-stat-icon" />
-            <h3>Ταχύτητα Ανεμιστήρα</h3>
+            <h3>Fan Speed</h3>
           </div>
           <div className="bus-button-group">
             <button
               className={`bus-btn ${fanSpeed === 'low' ? 'bus-btn-primary' : 'bus-btn-outline'}`}
               onClick={() => setFanSpeed('low')}
             >
-              Χαμηλή
+              Low
             </button>
             <button
               className={`bus-btn ${fanSpeed === 'medium' ? 'bus-btn-primary' : 'bus-btn-outline'}`}
               onClick={() => setFanSpeed('medium')}
             >
-              Μεσαία
+              Medium
             </button>
             <button
               className={`bus-btn ${fanSpeed === 'high' ? 'bus-btn-primary' : 'bus-btn-outline'}`}
               onClick={() => setFanSpeed('high')}
             >
-              Υψηλή
+              High
             </button>
           </div>
         </div>
@@ -158,8 +158,8 @@ export function ControlPanel() {
             <div className="bus-flex bus-items-center bus-gap-3">
               <DropletsIcon className="bus-stat-icon" />
               <div>
-                <h3>Αφυγραντήρας</h3>
-                <p className="bus-text-sm bus-text-muted">Μείωση υγρασίας</p>
+                <h3>Dehumidifier</h3>
+                <p className="bus-text-sm bus-text-muted">Humidity reduction</p>
               </div>
             </div>
             <Switch checked={dehumidifierEnabled} onChange={setDehumidifierEnabled} />
@@ -168,23 +168,23 @@ export function ControlPanel() {
 
         {/* System Status */}
         <div className="bus-mt-6 bus-pt-6 bus-border-t">
-          <h3 className="bus-mb-3">Κατάσταση Συστήματος</h3>
+          <h3 className="bus-mb-3">System Information</h3>
           <div className="bus-space-y-2 bus-text-sm">
             <div className="bus-flex bus-justify-between">
-              <span className="bus-text-muted">Λειτουργία:</span>
+              <span className="bus-text-muted">State:</span>
               <span>
-                {coolingEnabled ? 'Ψύξη' : heatingEnabled ? 'Θέρμανση' : 'Αναμονή'}
+                {coolingEnabled ? 'Cooling' : heatingEnabled ? 'Heating' : 'On Hold'}
               </span>
             </div>
             <div className="bus-flex bus-justify-between">
-              <span className="bus-text-muted">Ανεμιστήρας:</span>
+              <span className="bus-text-muted">Fan:</span>
               <span className="bus-capitalize">
-                {fanSpeed === 'low' ? 'Χαμηλή' : fanSpeed === 'medium' ? 'Μεσαία' : 'Υψηλή'}
+                {fanSpeed === 'low' ? 'Low' : fanSpeed === 'medium' ? 'Medium' : 'High'}
               </span>
             </div>
             <div className="bus-flex bus-justify-between">
-              <span className="bus-text-muted">Αφυγραντήρας:</span>
-              <span>{dehumidifierEnabled ? 'Ενεργός' : 'Ανενεργός'}</span>
+              <span className="bus-text-muted">Dehumidifier:</span>
+              <span>{dehumidifierEnabled ? 'Activated' : 'Deactivated'}</span>
             </div>
           </div>
         </div>

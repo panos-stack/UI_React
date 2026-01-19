@@ -1,10 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Play, Pause, Camera } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import Roadrview from "./images/road_view.jpg"
+import Roadrview from "./images/road_view.jpg";
+import { busStops } from "./Coffee/data/mockData";
 
 export function DriverView() {
   const [isPlaying, setIsPlaying] = useState(true);
+
+  const [speed, setSpeed] = useState(55);
+  const speeds = [55, 62, 70];
+
+  const [stop, setStop] = useState(busStops[1]);
+  const [time, setTime] = useState(5);
+
+  const [progress, setProgress] = useState(0);
+  const progresses = [0, 35, 70, 100];
+  
+    useEffect(() => {
+    const interval = setInterval(() => {
+      setSpeed(prevSpeed => {
+        const target = speeds[Math.floor(Math.random() * speeds.length)];
+        const step = 3;
+
+        if (prevSpeed < target) return Math.min(prevSpeed + step, target);
+        if (prevSpeed > target) return Math.max(prevSpeed - step, target);
+
+        return prevSpeed;
+      });
+    }, 2000);
+
+    const interval2 = setInterval(() => {
+      setStop(prevStop => {
+        const currentIndex = busStops.indexOf(prevStop);
+        const nextIndex = currentIndex !== -1 && currentIndex + 1 < busStops.length ? currentIndex + 1 : 0;
+        setProgress(prev => {
+                let newp = progresses[nextIndex]
+                return newp;
+              });
+        return busStops[nextIndex];
+      });
+
+      setSpeed(0);
+      setTime(6);
+    }, 50000);
+
+    const interval3 = setInterval(() => {
+      setTime( prevTime => {
+        let nextTime = prevTime - 1;
+        return nextTime;
+      })
+    }, 10000);
+
+  return () => {
+    clearInterval(interval);
+    clearInterval(interval2);
+    clearInterval(interval3);
+  };
+}, []);
+
 
   return (
     <div className="lego-bus-driver-view">
@@ -53,19 +106,19 @@ export function DriverView() {
           <div className="lego-bus-stats-grid">
             <div className="lego-bus-stat-card">
               <h3 className="lego-bus-stat-label">Current Speed</h3>
-              <p className="lego-bus-stat-value lego-text-3xl lego-text-blue-600">45 km/h</p>
+              <p className="lego-bus-stat-value lego-text-3xl lego-text-blue-600">{speed} km/h</p>
             </div>
             
             <div className="lego-bus-stat-card">
               <h3 className="lego-bus-stat-label">Next Stop</h3>
-              <p className="lego-bus-stat-value lego-text-xl lego-text-gray-900">Brandenburg Gate</p>
-              <p className="lego-bus-stat-detail">In 3 minutes</p>
+              <p className="lego-bus-stat-value lego-text-xl lego-text-gray-900">{stop.name}</p>
+              <p className="lego-bus-stat-detail">In {time} minutes</p>
             </div>
             
             <div className="lego-bus-stat-card">
               <h3 className="lego-bus-stat-label">Route Progress</h3>
               <div className="lego-flex lego-items-center lego-gap-2">
-                <p className="lego-bus-stat-value lego-text-3xl lego-text-green-600">60%</p>
+                <p className="lego-bus-stat-value lego-text-3xl lego-text-green-600">{progress}%</p>
                 <p className="lego-bus-stat-detail">Complete</p>
               </div>
             </div>

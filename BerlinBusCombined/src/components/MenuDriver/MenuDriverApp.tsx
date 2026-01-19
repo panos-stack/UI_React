@@ -6,7 +6,7 @@ import { RoofManagement } from './RoofManagement';
 import { BusCleaningApp } from './Vacum/BusCleaningApp';
 import { ArrowLeft, Info} from 'lucide-react';
 import './stylesDriver.css';
-import hooverImage from './images/Hoover_Quick_Start_Guide.png';
+import spotSelection from './images/Spot Selection.png';
 import BusDrivingGif from './images/wmremove-transformed.gif';
 
 type MenuItem = {
@@ -23,84 +23,84 @@ type GuideItem = {
 };
 
 const menuItems: MenuItem[] = [
-  { id: 'home', label: 'Αρχική', component: () => null },
-  { id: 'driving', label: 'Βοήθεια στην Οδήγηση', component: DrivingAssistance },
-  { id: 'temperature', label: 'Ρύθμιση Θερμοκρασίας', component: TemperatureControl },
-  { id: 'control', label: 'Πίνακας Ελέγχου', component: ControlPanel },
-  { id: 'roof', label: 'Διαχείριση Οροφής', component: RoofManagement },
-  { id: 'robotVacum', label: 'Σκούπα ρομποτ', component: BusCleaningApp}
+  { id: 'home', label: 'Home', component: () => null },
+  { id: 'driving', label: 'Driving Assistance', component: DrivingAssistance },
+  { id: 'temperature', label: 'Temperature Control', component: TemperatureControl },
+  { id: 'control', label: 'Control Panel', component: ControlPanel },
+  { id: 'roof', label: 'Roof Management', component: RoofManagement },
+  { id: 'robotVacum', label: 'Bus Cleaning', component: BusCleaningApp}
 ];
 
 const guidesByMenu: Record<string, GuideItem[]> = {
   home: [
     {
       id: "noInfo",
-      description: "Δεν υπάρχουν διαθέσιμες πληροφορίες. Επιλέξτε κάποια ενέργεια από το Μενού για να ξεκινήσετε."
+      description: "There are no available information. Select an action from the Menu to get started."
     }
   ],
   driving: [
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Κοντέρ: \n Ενημέρωση για την ταχύτητα. \n\n Κουμπί 'Στάση': \n Πραγματοποίηση στάσης.",
+      title: "Short Reference Manual",
+      description: "Speedometer: \n Speed monitoring. \n\n Button 'Stop': \n Carries out a stop.",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές Λειτουργίες: \n\n 1. Κοντέρ: \n Ο χρήστης παρακολουθεί τη διακύμανση της ταχύτητας του λεωφορείου. Επίσης, εαν το επίπεδο ταχύτητας υπερβαίνει το επιτρεπτό όριο και κάποια ρόδα του λεωφορείου πατάει πάνω σε λωρίδα, εμφανίζεται στην οθόνη μήνυμα το οποίο προτείνει στον οδηγό να κάνει στάση για ξεκούραση και καφέ. \n\n 2. Κουμπί 'Στάση': \n Με το πάτημα του κουμπιού αυτού ο οδηγός ανοίγει τις πόρτες και ενημερώνεται για το αν ακόμα αποβιβάζονται επιβάτες από το λεωφορείο ώστε να μην κλείσει τις πόρτες.",
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. Speedometer: \n The user can monitor the updates of the current speed of the bus. Also, if the current speed exceeds the speed limit and a bus wheel is not in the correct lane, a message appears on the driver's screen suggesting that the driver should make a stop to get some rest and maybe a coffee. \n\n 2. Button 'Stop': \n By pressing this button the driver opens the doors for the passengers to get off the bus and is getting updates on whether he can close the doors or not.",
     },
   ],
   temperature: [    
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Ρύθμιση Θερμοκρασίας: \n Χειροκίνητη ρύθμιση θερμοκρασίας. \n\n Γρήγορες Ρυθμίσεις: \n Επιλογή μεταξύ συγκεκριμένων τιμών.",
+      title: "Sort Reference Manual",
+      description: "Temperature Adjustment: \n Manual Temperature Adjustment. \n\n Quick Options: \n Quick selection between specific temperature options.",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές Λειτουργίες: \n\n 1. Ρύθμιση Θερμοκρασίας: \n Ο χρήστης μπορεί να ενημερωθεί άμεσα για τις συνθήκες που επικρατούν τόσο στο εσωτερικό όσο και στο εξωτερικό του λεωφορείου και μπορεί να προσαρμόσει ανάλογα την εσωτερική θερμοκρασία. \n\n 2. Γρήγορες Ρυθμίσεις: \n Ο χρήστης μπορεί εύκολα και γρήγορα με το πάτωμα ενός κουμπιού να αλλάξη την επιθυμητή θερμοκρασία. Η λειτουργία αυτή είναι εξαιρετικά βοηθητική για τον οδηγό και παρέχει ασφάλεια καθώς μειώνεται ο κίνδυνος να αποσπαστεί ο οδηγός. Οι τιμές που δίνονται είναι προκαθορισμένες",
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. Temperature Adjustment: \n The user can get get updates about the current weather conditions both inside and outside of the bus and adjust the inside temperature accordingly. \n\n 2. Quick Options: \n The driver can easily change the temperature inside the bus with the simple press of a button. This function is extremely helpful for the driver as it is reducing the risk of him getting distracted. The only thing he has to do is to choose between a few predetermined options.",
     },
   ],
   control: [
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Κουμπιά Θέρμανσης/Ψύξης και Αφυγραντήρα: \n Έλεγχος κλιματισμού. \n\n Ταχύτητα ανεμιστήρα: \n 3 βαθμίδες επιλογών. \n\n Κατάσταση Συστήματος: \n Ενημέρωση για τη λειτουργία του κλιματιστικού. ",
+      title: "Short Reference Manual",
+      description: "Buttons for Cooling/Heating and Dehumidifier: \n Air-Conditioning Control. \n\n Fan Speed: \n 3 available options (low, medium, high). \n\n System Information: \n Updates on the air-conditioning operation.",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές Λειτουργίες: \n\n 1. Θέρμανση/Ψύξη: \n Ο χρήστης μπορεί να επιλέξει να ανοίξει είτε τη θέρμανση είτε την ψύξη αλλά ποτέ και τα 2 ταυτόχρονα. \n\n 2. Ταχύτητα ανεμιστήρα: \n Ο χρήστης μπορεί να προσαρμόσει το επιπέδο της ταχύτητας του ανεμιστήρα. \n\n 3. Αφυγραντήρας: \n Ο χρήστης έχει τη δυνατότητα να ανοίξει και αφυγραντήρα σε περίπτωση που νοιώσει ότι είναι αναγκαίο. \n\n 4. Κατάσταση Συστήματος: \n Ο χρήστης ενημερώνεται για την κάθε λειτουργίας.",
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. Cooling/Heating: \n The user can activate either the cooling system or the heating but never both of them at the same time. \n\n 2. Fan Speed: \n The user can adjust the speed level of the fan. \n\n 3. Dehumidifier: \n The user is able to activate the humidifier in case if necessary. \n\n 4. System Information: \n The user gets updates about the state of each temperature control system.",
     },
   ],
   roof: [
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Πληροφορίες Παραγωγής Ενέργειας: \n Διαρκής ενημέρωση για την ενέργεια. \n\n Πληροφορίες Φωτοβολταϊκών: \n Ενημερώνει για την κατάσταση των πανελ. \n\n Στατιστικά: \n Παράγει και εμφανίζει στατιστικά δεδομένα.",
+      title: "Short Reference Manual",
+      description: "Information on Energy Production: \n Constant updates about the energy produced. \n\n Information on Photovoltaics: \n Updates about the state of each panel. \n\n Statistics: \n Produces feedback and daily statistics.",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
+      title: "Full Reference Manual",
       description: "Αναλυτικές Λειτουργίες: \n\n 1. Διαχείριση Οροφής και Ενέργειας: \n Τα δεδομένα ενημερώνονται ανά συχνά χρονικά διαστήματα ώστε ο χρήστης να μπορεί να καταλάβει αν βοηθά στην παραγωγή ενέργειας ή αν καταναλώνει την ήδη υπάρχουσα. \n\n 2. Κατάσταση Φωτοβολταϊκών: \n Ο χρήστης μπορεί να ενημερωθεί για την κατάσταση της μπαταρίας και τη λειτουργία κάθε πανελ ξεχωριστά \n\n 3. Στατιστικά: \n Ο χρήστης μπορεί να ενημερωθεί για τα στατιστικά της ενέργειας που παράχθηκε καθώς και αυτής που καταναλώθηκε από το λεωφορείο και να εξάγει συμπεράσματα ώστε να βελτιώσει την αξιοποίηση των διαθέσιμων πόρων.",
     },
   ],
   robotVacum: [
     {
       id: "quickStartQuide",
-      title: "Σύντομες Σημειώσεις Εκκίνησης",
-      image: hooverImage,
+      title: "Quick Start Guide",
+      image: spotSelection,
     },
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Χάρτης: \n Προβολή κάτοψης του εσωτερικού του λεωφορείου.\n\n Μενού επιλογών: \n Προβάλλει τις διαθέσιμες επιλογές καθαρισμού.\n\n Επιβεβαίωση: \n Οριστικοποιεί τις επιλογές του χρήστη.\n\n Χρονόμετρο: \n Αντίστροφη μέτρηση του χρόνου περάτωσης του καθαρισμού.",
+      title: "Short Reference Manual",
+      description: "Map: \n  Top view of the bus interior.\n\n Selections: \n Displays the available cleaning options.\n\n Confirmation: \n Finalizes the user choices.\n\n Timer: \n Countdown untill the bus cleaning is complete.",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές λειτουργίες: \n\n 1.	Επιλογή σημείων καθαρισμού από χάρτη: \n Ο χρήστης έχει τη δυνατότητα να επιλέξει από το χάρτη συγκεκριμένα σημεία καθαρισμού. Οι επιλογές θα είναι προκαθορισμένες με βάση σημεία σε ένα imap που θα αντικατοπτρίζει την κάτοψη του λεωφορείου. Αυτές μπορεί να είναι το δάπεδο, οι σκάλες,  τα καθίσματα, τα τζάμια ή ολόκληρο το λεωφορείο. \n\n 2.	Επιλογή μεθόδου καθαρισμού: \n Αφού ο χρήστης έχει επιλέξει τα σημεία καθαρισμού, η εφαρμογή του δίνει μια λίστα με επιλογές για τον τρόπο καθαρισμού, δηλαδή απλό σκούπισμα, βιολογικός καθαρισμός ή καθαρισμός του εξωτερικού του λεωφορείου. \n\n 3.	Εκτιμώμενος χρόνος και διεκπεραίωση: \n Στο σημείο αυτό υπολογίζεται ο εκτιμώμενος χρόνος διεκπεραίωσης της διαδικασίας και εφόσον ο χρήστης εγκρίνει, ξεκινάει η διαδικασία του καθαρισμού. Διαφορετικά, ο χρήστης υποβάλλει τις αλλαγές που επιθυμεί. \n\n 4.	Αναφορά ευρημάτων: \n Η σκούπα ενημερώνει μέσω της εφαρμογής την εταιρεία για την εύρεση τα οποία αντιλαμβάνεται ως σημαντικά."
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. Selection from the map: \n The user is able to select specific spots that need to be cleaned. He is provided with an imap that resembles the interior of the bus from a top view. The available selections are the floor, the steps, the seats, the windows or even the whole bus. \n\n 2. Selection of the cleaning method: \n After the user has selected the cleaning spots, he is provided with a list of cleaning methods to choose from accompanied by the estimated time of completion. Some of the cleaning methods are sweeping, biological purification or cleaning of the exterior of the bus. \n\n 3. Estimated time and cleaning completion: \n At this point, the estimated time of completion is estimated and if the user approves, the the cleaning progress begins. Otherwise, the user changes his selections. \n\n 4.	Report: \n The hoover informs the company about any findings it perceives as important."
     },
   ],
 };
@@ -108,8 +108,8 @@ const guidesByMenu: Record<string, GuideItem[]> = {
 function HomePage() {
   return (
     <div className="bus-home-page">
-      <h1> Σύστημα Διαχείρισης Λεωφορείου </h1>
-      <h2>Επιλέξτε μια λειτουργία από το μενού </h2>
+      <h1>Bus Management System </h1>
+      <h2>Select an action from the Menu. </h2>
       <p> <img src={BusDrivingGif} style={{ height: innerHeight*5/7 }}/> </p>
     </div>
   );
@@ -147,7 +147,7 @@ function RightSidebarGuide({ guides }: { guides: GuideItem[] }) {
                   alt={guide.title}
                   className="guide-thumbnail"
                 />
-                <div className="hover-hint">🖱️ Κρατήστε το ποντίκι για μεγέθυνση</div>
+                <div className="hover-hint">🖱️ Hold the mouse for zoom in.</div>
               </div>
           )}
         </div>
@@ -165,7 +165,7 @@ function RightSidebarGuide({ guides }: { guides: GuideItem[] }) {
               className="enlarged-image"
             />
             <div className="modal-instruction">
-              Μετακινήστε το ποντίκι έξω για κλείσιμο
+              Move the mouse for zoom out.
             </div>
           </div>
         </div>
@@ -195,7 +195,7 @@ export function MenuDriverApp({ onBack }: MenuDriverAppProps) {
         <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" style={{padding: "8px", borderRadius: "8px", cursor: "pointer"}}>
           <ArrowLeft className="w-6 h-6" size = {24} />
         </button>
-        <h2 style={{ fontWeight: "bold", margin: 0, marginRight: "auto", lineHeight: "24px" }} >Μενού</h2>
+        <h2 style={{ fontWeight: "bold", margin: 0, marginRight: "auto", lineHeight: "24px" }} >Menu</h2>
       </div>
       
       <div className="bus-left-sidebar-content">
@@ -249,7 +249,7 @@ export function MenuDriverApp({ onBack }: MenuDriverAppProps) {
       {/* Right Sidebar */}
       <aside className={`bus-right-sidebar ${isRightSidebarOpen ? 'right-open' : 'right-closed'}`}>
       <div className="bus-right-sidebar-content">
-          <h2  style={{ fontWeight: "bold"}}>ΠΛΗΡΟΦΟΡΙΕΣ</h2>
+          <h2  style={{ fontWeight: "bold"}}>Information</h2>
           <RightSidebarGuide guides={guidesByMenu[activeMenu]}/>          
       </div>
       </aside>

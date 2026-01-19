@@ -20,8 +20,19 @@ export interface Drink {
 export interface BusStop {
   id: string;
   name: string;
-  route: string;
-  estimatedArrival: string;
+  route?: string;
+  estimatedArrival?: string;
+  distance?: string;
+  position?: [number, number];
+  arrivalTime?: string;
+}
+
+export interface Restaurant {
+  id: number;
+  name: string;
+  cuisine: string;
+  position: [number, number];
+  rating: number;
   distance: string;
 }
 

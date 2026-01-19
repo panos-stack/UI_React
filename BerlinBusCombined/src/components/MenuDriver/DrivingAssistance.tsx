@@ -117,7 +117,7 @@ export function DrivingAssistance() {
     <div>
       <div className="bus-card">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="flex">Βοήθεια στην Οδήγηση</h2>
+          <h2 className="flex">Driving Assistance</h2>
           <button
               onClick={() => {
                 setPassengersExiting(prev => {
@@ -128,19 +128,18 @@ export function DrivingAssistance() {
               }}
               className="flex bus-btn bus-button-secondary"
             >
-              Στάση
+              Stop
             </button>
           </div>
         <p className="bus-card-description">
-          Οι αισθητήρες του λεωφορείου παρακολουθούν την οδήγηση
-          και βοηθούν τον οδηγό.
+          There are bus sensors in order to monitor and help the driver.
         </p>
 
         {/* Status Overview */}
         <div className="bus-grid bus-grid-cols-2 bus-mb-6">
           <div className="bus-stat-card">
             <div className="bus-flex bus-items-center bus-justify-between">
-              <span>Ταχύτητα</span>
+              <span>Current Speed</span>
               <span
                 className={`bus-badge ${speed > speedLimit ? "bus-badge-destructive" : "bus-badge-default"}`}
               >
@@ -148,17 +147,17 @@ export function DrivingAssistance() {
               </span>
             </div>
             <div className="bus-text-sm bus-text-muted bus-mt-2">
-              Όριο: {speedLimit} km/h
+              Speed Limit: {speedLimit} km/h
             </div>
           </div>
 
           <div className="bus-stat-card">
             <div className="bus-flex bus-items-center bus-justify-between">
-              <span>Κατάσταση Λωρίδας</span>
+              <span>Lane Status</span>
               <span
                 className={`bus-badge ${laneDeviation ? "bus-badge-destructive" : "bus-badge-default"}`}
               >
-                {laneDeviation ? "Απόκλιση" : "Εντάξει"}
+                {laneDeviation ? "Deviation" : "Ok"}
               </span>
             </div>
           </div>
@@ -171,11 +170,11 @@ export function DrivingAssistance() {
               <AlertTriangleIcon />
               <div className="bus-alert-content">
                 <div className="bus-alert-title">
-                  Υπέρβαση Ορίου Ταχύτητας
+                  Reduce Speed!
                 </div>
                 <div className="bus-alert-description">
-                  Μειώστε την ταχύτητα! Τρέχουσα: {speed} km/h,
-                  Όριο: {speedLimit} km/h
+                  You are over the speed limit! Current Speed: {speed} km/h,
+                  Speed Limit: {speedLimit} km/h
                 </div>
               </div>
             </div>
@@ -186,10 +185,10 @@ export function DrivingAssistance() {
               <NavigationIcon />
               <div className="bus-alert-content">
                 <div className="bus-alert-title">
-                  Απόκλιση από τη Λωρίδα
+                  Lane Deviation!
                 </div>
                 <div className="bus-alert-description">
-                  Επιστρέψτε στη λωρίδα σας!
+                  Return to your lane!
                 </div>
               </div>
             </div>
@@ -200,10 +199,10 @@ export function DrivingAssistance() {
               <CoffeeIcon />
               <div className="bus-alert-content">
                 <div className="bus-alert-title">
-                  Ενδείξεις Κόπωσης
+                  Signs of weariness!
                 </div>
                 <div className="bus-alert-description">
-                  Σκεφτείτε μήπως θέλετε καφέ
+                  Consider having a coffee.
                 </div>
               </div>
             </div>
@@ -213,9 +212,9 @@ export function DrivingAssistance() {
             <div className="bus-alert bus-alert-default">
               <DoorOpenIcon />
               <div className="bus-alert-content">
-                <div className="bus-alert-title">Προσοχή</div>
+                <div className="bus-alert-title">Attention!</div>
                 <div className="bus-alert-description">
-                  Επιβάτες κατεβαίνουν ακόμα. Μην κλείσετε τις πόρτες!
+                  Passengers are still getting off the bus. Do not close the doors!
                 </div>
               </div>
             </div>

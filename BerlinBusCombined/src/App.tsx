@@ -1,3 +1,4 @@
+console.log("APP START");
 import { useState } from 'react';
 import { Users, User } from 'lucide-react';
 import { MenuDriverApp } from './components/MenuDriver/MenuDriverApp';

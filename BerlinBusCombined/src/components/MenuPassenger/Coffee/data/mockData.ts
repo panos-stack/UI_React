@@ -1,4 +1,4 @@
-import { CoffeeShop, Drink, BusStop, PaymentCard } from '../types';
+import { CoffeeShop, Drink, BusStop, PaymentCard, Restaurant } from '../types';
 import Brew_Haven from './images/Brew_Haven.jpg';
 import City_Roasters from './images/City_Roasters.webp';
 import Express_Coffee_Co from './images/Express_Coffee_Co.jpg';
@@ -135,45 +135,74 @@ export const drinks: Drink[] = [
 export const busStops: BusStop[] = [
   {
     id: '1',
-    name: 'Central Station',
+    name: 'Brandenburg Gate',
     route: 'Route 42, 55, 78',
     estimatedArrival: '5 min',
     distance: '0.3 miles',
+    position: [52.5163, 13.3777],
+    arrivalTime: "10:00 AM",
   },
   {
     id: '2',
-    name: 'City Hall Plaza',
+    name: 'TV Tower',
     route: 'Route 12, 42, 91',
     estimatedArrival: '12 min',
     distance: '0.8 miles',
+    position: [52.5208, 13.4094],
+    arrivalTime: "10:20 AM",
   },
   {
     id: '3',
-    name: 'University Avenue',
+    name: 'Berlin Cathedral',
     route: 'Route 22, 55',
     estimatedArrival: '8 min',
     distance: '0.5 miles',
+    position: [52.5191, 13.4013], 
+    arrivalTime: "10:40 AM",
   },
   {
     id: '4',
-    name: 'Commerce Street',
+    name: 'Reinstag',
     route: 'Route 78, 91',
-    estimatedArrival: '15 min',
+    estimatedArrival: '7 min',
     distance: '1.2 miles',
+    position: [52.5186, 13.3762],
+    arrivalTime: "11:00 AM",
   },
-  {
-    id: '5',
-    name: 'Park Boulevard',
-    route: 'Route 12, 22, 42',
-    estimatedArrival: '10 min',
-    distance: '0.7 miles',
+];
+
+export const restaurants: Restaurant[] = [
+  { 
+    id: 1, 
+    name: "Berliner Küche", 
+    cuisine: "German", 
+    position: [52.5170, 13.3800], 
+    rating: 4.5, 
+    distance: "50m from Brandenburg Gate" 
   },
-  {
-    id: '6',
-    name: 'Harbor Terminal',
-    route: 'Route 55, 78',
-    estimatedArrival: '18 min',
-    distance: '1.5 miles',
+  { 
+    id: 2, 
+    name: "Bella Italia", 
+    cuisine: "Italian", 
+    position: [52.5200, 13.4080], 
+    rating: 4.3, 
+    distance: "100m from TV Tower" 
+  },
+  { 
+    id: 3, 
+    name: "Curry 36", 
+    cuisine: "Fast Food", 
+    position: [52.5195, 13.4020], 
+    rating: 4.7, 
+    distance: "80m from Cathedral" 
+  },
+  { 
+    id: 4, 
+    name: "Hauptstadt Café", 
+    cuisine: "Café", 
+    position: [52.5180, 13.3770], 
+    rating: 4.6, 
+    distance: "70m from Reichstag" 
   },
 ];
 

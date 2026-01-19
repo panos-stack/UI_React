@@ -55,6 +55,8 @@ export function RoofManagement() {
   const [batteryLevel, setBatteryLevel] = useState(75);
   const [energyConsumption, setEnergyConsumption] = useState(2.8);
   const [sunlight] = useState(85);
+  const [roof, setRoof] = useState(false);
+  const [roofState, setRoofState] = useState("Closed");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -79,9 +81,26 @@ export function RoofManagement() {
   return (
     <div>
       <div className="bus-card">
-        <h2>Διαχείριση Οροφής και Ενέργειας</h2>
+        <div className="flex items-center justify-between mb-3">
+        <h2>Roof and Energy Management</h2>
+        <button
+              onClick={() => {
+                setRoof(prev => {
+                  const next = !prev;
+                  setRoofState(prev => {
+                    let newroof = next ? "Open" : "Close"
+                    return newroof;
+                  });
+                  return next;
+                });
+              }}
+              className="flex bus-btn bus-button-secondary"
+            >
+              {roofState} Roof
+            </button>
+          </div>
         <p className="bus-card-description">
-          Φωτοβολταϊκά πάνελ και διαχείριση ενέργειας
+          Photovoltaic panels and energy management.
         </p>
 
         {/* Solar Production Overview */}
@@ -89,34 +108,34 @@ export function RoofManagement() {
           <div className="bus-stat-card bus-gradient-yellow">
             <div className="bus-stat-header">
               <SunIcon className="bus-stat-icon bus-icon-yellow" />
-              <span>Παραγωγή</span>
+              <span>Production</span>
             </div>
             <div className="bus-stat-value">{solarProduction.toFixed(1)} kW</div>
             <div className="bus-stat-label">
-              Ηλιακή ένταση: {sunlight}%
+              Sun Intensity: {sunlight}%
             </div>
           </div>
 
           <div className="bus-stat-card bus-gradient-blue">
             <div className="bus-stat-header">
               <ZapIcon className="bus-stat-icon bus-icon-cyan" />
-              <span>Κατανάλωση</span>
+              <span>Consumption</span>
             </div>
             <div className="bus-stat-value">{energyConsumption.toFixed(1)} kW</div>
-            <div className="bus-stat-label">Τρέχουσα</div>
+            <div className="bus-stat-label">Current</div>
           </div>
 
           <div className="bus-stat-card bus-gradient-green">
             <div className="bus-stat-header">
               <TrendingUpIcon className="bus-stat-icon bus-icon-green" />
-              <span>Καθαρή</span>
+              <span>Energy</span>
             </div>
             <div className="bus-stat-value">
               {netProduction > 0 ? '+' : ''}{netProduction.toFixed(1)} kW
             </div>
             <div className="bus-stat-label">
               <span className={`bus-badge ${isCharging ? 'bus-badge-default' : 'bus-badge-secondary'}`} style={{ fontSize: '0.75rem' }}>
-                {isCharging ? 'Φόρτιση' : 'Εκφόρτιση'}
+                {isCharging ? 'Charging' : 'Draining'}
               </span>
             </div>
           </div>
@@ -124,7 +143,7 @@ export function RoofManagement() {
           <div className="bus-stat-card bus-gradient-purple">
             <div className="bus-stat-header">
               <BatteryIcon className="bus-stat-icon bus-icon-purple" />
-              <span>Μπαταρία</span>
+              <span>Battery</span>
             </div>
             <div className="bus-stat-value">{batteryLevel.toFixed(0)}%</div>
             <div className="bus-mt-2">
@@ -135,10 +154,10 @@ export function RoofManagement() {
 
         {/* Solar Panel Status */}
         <div className="bus-stat-card bus-mb-6">
-          <h3 className="bus-mb-4">Κατάσταση Φωτοβολταϊκών</h3>
+          <h3 className="bus-mb-4">Photovoltaic Status</h3>
           <div className="bus-space-y-4">
             <div className="bus-progress-row">
-              <span className="bus-text-sm">Πάνελ 1 (Εμπρός)</span>
+              <span className="bus-text-sm">Panel 1 (Front)</span>
               <div className="bus-flex bus-items-center bus-gap-2">
                 <div className="bus-progress bus-w-32 bus-h-2">
                   <div className="bus-progress-bar" style={{ width: '90%' }}></div>
@@ -147,7 +166,7 @@ export function RoofManagement() {
               </div>
             </div>
             <div className="bus-progress-row">
-              <span className="bus-text-sm">Πάνελ 2 (Μέση)</span>
+              <span className="bus-text-sm">Panel 2 (Middle)</span>
               <div className="bus-flex bus-items-center bus-gap-2">
                 <div className="bus-progress bus-w-32 bus-h-2">
                   <div className="bus-progress-bar" style={{ width: '87%' }}></div>
@@ -156,7 +175,7 @@ export function RoofManagement() {
               </div>
             </div>
             <div className="bus-progress-row">
-              <span className="bus-text-sm">Πάνελ 3 (Πίσω)</span>
+              <span className="bus-text-sm">Panel 3 (Rear)</span>
               <div className="bus-flex bus-items-center bus-gap-2">
                 <div className="bus-progress bus-w-32 bus-h-2">
                   <div className="bus-progress-bar" style={{ width: '92%' }}></div>
@@ -169,22 +188,22 @@ export function RoofManagement() {
 
         {/* Energy Statistics */}
         <div className="bus-stat-card">
-          <h3 className="bus-mb-4">Στατιστικά Ενέργειας (Σήμερα)</h3>
+          <h3 className="bus-mb-4">Energy Statistics (Today)</h3>
           <div className="bus-grid bus-grid-cols-4 bus-gap-4">
             <div>
-              <p className="bus-text-sm bus-text-muted bus-mb-1">Συνολική Παραγωγή</p>
+              <p className="bus-text-sm bus-text-muted bus-mb-1">Total Production</p>
               <p className="bus-text-2xl">24.5 kWh</p>
             </div>
             <div>
-              <p className="bus-text-sm bus-text-muted bus-mb-1">Συνολική Κατανάλωση</p>
+              <p className="bus-text-sm bus-text-muted bus-mb-1">Total Consumption</p>
               <p className="bus-text-2xl">19.2 kWh</p>
             </div>
             <div>
-              <p className="bus-text-sm bus-text-muted bus-mb-1">Εξοικονόμηση</p>
+              <p className="bus-text-sm bus-text-muted bus-mb-1">Saved</p>
               <p className="bus-text-2xl bus-text-green">5.3 kWh</p>
             </div>
             <div>
-              <p className="bus-text-sm bus-text-muted bus-mb-1">CO₂ Μείωση</p>
+              <p className="bus-text-sm bus-text-muted bus-mb-1">CO₂ Reduction</p>
               <p className="bus-text-2xl bus-text-green">2.6 kg</p>
             </div>
           </div>
@@ -192,25 +211,25 @@ export function RoofManagement() {
 
         {/* Demo Controls */}
         <div className="bus-mt-6 bus-pt-6 bus-border-t">
-          <p className="bus-text-sm bus-text-muted bus-mb-3">Έλεγχοι Προσομοίωσης:</p>
+          <p className="bus-text-sm bus-text-muted bus-mb-3">Simulation Controls:</p>
           <div className="bus-demo-controls">
             <button
               onClick={() => setEnergyConsumption(1.5)}
               className="bus-btn bus-btn-secondary"
             >
-              Χαμηλή Κατανάλωση
+              Low Consumption
             </button>
             <button
               onClick={() => setEnergyConsumption(2.8)}
               className="bus-btn bus-btn-secondary"
             >
-              Κανονική Κατανάλωση
+              Standard Consumption
             </button>
             <button
               onClick={() => setEnergyConsumption(4.2)}
               className="bus-btn bus-btn-secondary"
             >
-              Υψηλή Κατανάλωση
+              High Consumption
             </button>
           </div>
         </div>

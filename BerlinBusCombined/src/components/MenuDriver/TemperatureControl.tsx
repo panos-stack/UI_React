@@ -79,9 +79,9 @@ export function TemperatureControl() {
   return (
     <div>
       <div className="bus-card">
-        <h2>Ρύθμιση Θερμοκρασίας</h2>
+        <h2>Temperature Adjustment</h2>
         <p className="bus-card-description">
-          Ρύθμιση θερμοκρασίας ανάλογα με τις συνθήκες
+          Temperature adjustment according to the current weather conditions.
         </p>
 
         {/* Current Conditions */}
@@ -89,7 +89,7 @@ export function TemperatureControl() {
           <div className="bus-stat-card">
             <div className="bus-stat-header">
               <ThermometerIcon className="bus-stat-icon bus-icon-blue" />
-              <span>Τρέχουσα</span>
+              <span>Current Inside Temperature</span>
             </div>
             <div className="bus-stat-value">{currentTemp}°C</div>
           </div>
@@ -97,7 +97,7 @@ export function TemperatureControl() {
           <div className="bus-stat-card">
             <div className="bus-stat-header">
               <SunIcon className="bus-stat-icon bus-icon-orange" />
-              <span>Εξωτερική</span>
+              <span>Current Outside Temperature</span>
             </div>
             <div className="bus-stat-value">{outsideTemp}°C</div>
           </div>
@@ -105,7 +105,7 @@ export function TemperatureControl() {
           <div className="bus-stat-card">
             <div className="bus-stat-header">
               <CloudIcon className="bus-stat-icon" />
-              <span>Υγρασία</span>
+              <span>Humidity</span>
             </div>
             <div className="bus-stat-value">{humidity}%</div>
           </div>
@@ -115,12 +115,12 @@ export function TemperatureControl() {
         <div className="bus-space-y-6">
           <div>
             <div className="bus-flex bus-items-center bus-justify-between bus-mb-4">
-              <label>Επιθυμητή Θερμοκρασία</label>
+              <label>Desirable Temperature</label>
               <div className="bus-flex bus-items-center bus-gap-2">
                 <span className={`bus-badge ${mode === 'cooling' ? 'bus-badge-default' : mode === 'heating' ? 'bus-badge-destructive' : 'bus-badge-secondary'}`}>
                   {mode === 'cooling' && (<span style={{ width: '12px', height: '12px', marginRight: '4px' }}> <SnowflakeIcon className="bus-stat-icon" /> </span>)}
                   {mode === 'heating' && (<span style={{ width: '12px', height: '12px', marginRight: '4px' }}> <SunIcon className="bus-stat-icon" /> </span>)}
-                  {mode === 'cooling' ? 'Ψύξη' : mode === 'heating' ? 'Θέρμανση' : 'Αναμονή'}
+                  {mode === 'cooling' ? 'Cooling' : mode === 'heating' ? 'Heating' : 'Desirable Temperature Achieved'}
                 </span>
                 <span className="bus-text-2xl">{targetTemp}°C</span>
               </div>
@@ -142,25 +142,25 @@ export function TemperatureControl() {
 
           {/* Quick Preset Buttons */}
           <div className="bus-pt-4 bus-border-t">
-            <p className="bus-text-sm bus-mb-3">Γρήγορες Ρυθμίσεις:</p>
+            <p className="bus-text-sm bus-mb-3">Quick Options:</p>
             <div className="bus-demo-controls">
               <button
                 onClick={() => setTargetTemp(18)}
                 className="bus-preset-btn bus-preset-btn-cool"
               >
-                Ψύχρο (18°C)
+                Cold (18°C)
               </button>
               <button
                 onClick={() => setTargetTemp(22)}
                 className="bus-preset-btn bus-preset-btn-comfort"
               >
-                Άνετο (22°C)
+                Cool (22°C)
               </button>
               <button
                 onClick={() => setTargetTemp(25)}
                 className="bus-preset-btn bus-preset-btn-warm"
               >
-                Θερμό (25°C)
+                Warm (25°C)
               </button>
             </div>
           </div>

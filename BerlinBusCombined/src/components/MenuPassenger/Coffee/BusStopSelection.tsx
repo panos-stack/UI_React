@@ -1,5 +1,6 @@
 import { BusStop } from './types';
 import { MapPin, Clock, Navigation } from 'lucide-react';
+import { LeafletMap } from '../LeafletMap';
 
 interface BusStopSelectionProps {
   busStops: BusStop[];
@@ -67,45 +68,17 @@ export function BusStopSelection({
           ))}
         </div>
 
-        {/* Map Placeholder */}
+        {/* Map */}
         <div className="bg-white rounded-xl border-2 border-gray-200 overflow-hidden sticky top-24 h-fit">
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 h-[500px] relative flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">Map View</p>
-              {selectedStop && (
-                <div className="mt-4 bg-white rounded-lg shadow-lg p-4 max-w-xs">
-                  <p className="text-gray-900">{selectedStop.name}</p>
-                  <p className="text-gray-600">{selectedStop.route}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Route visualization */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e5e7eb" strokeWidth="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-              
-              {/* Mock route line */}
-              {selectedStop && (
-                <>
-                  <path
-                    d="M 100 100 Q 200 150, 300 100 T 500 150"
-                    fill="none"
-                    stroke="#f59e0b"
-                    strokeWidth="4"
-                    strokeDasharray="10,5"
-                  />
-                  <circle cx="300" cy="100" r="8" fill="#f59e0b" />
-                </>
-              )}
-            </svg>
+          <div className="h-[500px] relative">
+            <LeafletMap
+              busStops={busStops}
+              selectedStop={selectedStop}
+              onSelectStop={onSelectStop}
+            />
           </div>
         </div>
+        
       </div>
 
       <div className="mt-8 flex justify-between">

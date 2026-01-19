@@ -6,7 +6,7 @@ import { HistoricalSights } from './HistoricalSights';
 import { MapView } from './MapView';
 import './stylesPassenger.css';
 
-import coffeeImage from './images/Coffee_Quick_Start_Guide.png';
+import orderSteps from './images/order.jpg';
 
 type MenuItem = {
   id: string;
@@ -22,76 +22,61 @@ type GuideItem = {
 };
 
 const menuItems: MenuItem[] = [
-  { id: 'home', label: 'Αρχική', component: DriverView },
-  { id: 'sights', label: 'Αξιοθέατα', component: HistoricalSights },
-  { id: 'coffeeOrdering', label: 'Παραγγελία Καφέ', component: CoffeeOrderingApp },
-  { id: 'tour', label: 'Τουριστική Πλοήγηση', component: MapView }
+  { id: 'home', label: 'Home', component: DriverView },
+  { id: 'sights', label: 'Historical Sights', component: HistoricalSights },
+  { id: 'coffeeOrdering', label: 'Coffee Ordering', component: CoffeeOrderingApp },
+  { id: 'tour', label: 'Navigation for Tourists', component: MapView }
 ]
 
 const guidesByMenu: Record<string, GuideItem[]> = {
   home: [
     {
-      id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: null,
-    },
-    {
-      id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: null,
+      id: "noInfo",
+      description: "No action is required from the user. The current feature exists in order to make the user experience easier. Select an action from the Menu to get started..",
     },
   ],
   sights: [
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: null,
+      title: "Short Reference Manual",
+      description: "Sights: \n Detailed information on the sights of Berlin.",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: null,
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. Sight Selection: \n The user can choose one of the available sights and get plenty of information about it.",
     },
   ],
   coffeeOrdering: [
     {
       id: "quickStartQuide",
-      title: "Σύντομες Σημειώσεις Εκκίνησης",
-      image: coffeeImage,
+      title: "Quick Start Guide",
+      image: orderSteps,
     },
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: "Λίστα Μαγαζιών: \n Επιλέγουμε από πιο μαγαζί θέλουμε να προμυθευτούμε το προϊόν. \n\n Κατάλογος: \n Επιλέγουμε ποιο προϊόν θα αγοράσουμε. \n\n Λίστα στάσεων: Επιλέγουμε σε ποια στάση θα παραλάβουμε τα προϊόντα. \n\n Κουμπί Πληρωμής: \n Επιλέγουμε τον τρόπο που θα πληρώσουμε. \n\n Πεδία για την Κάρτα: Σημειώνουμε τα στοιχεία της κάρτας μας. \n\n Κουμπί Επιβεβαίωσης: \n Κάνουμε την οριστική πληρωμή και αυτόματα ολοκληρώνεται η παραγγελία. \n\n ",
+      title: "Short Reference Manual",
+      description: "Shop List: \n The user selects the coffee shop to which he would like to make an order. \n\n Drink Selection: \n The user chooses the desired beverage. \n\n Bus stops: The user chooses the bus stop where he would like to have his order delivered. \n\n Payment: \n The user chooses payment method. \n\n Card Fields: The user fills in his card details. \n\n Confirmation Button: \n Finalizes the user choices and begins the order preperation. \n\n ",
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: "Αναλυτικές Λειτουργίες: \n\n 1. Επιλογή καφετέριας: \n Ο χρήστης θα μπορεί να επιλέξει μέσω ενός χάρτη ένα κατάστημα με βάση την προτίμηση του και τις προσφορές που μπορεί να υπάρχουν με τη χρήση του ανάλογου κουμπιού. \n\n 2. Επιλογή προϊόντων: \n Αφότου ο χρήστης έχει επιλέξει την επιθυμητή καφετέρια, μπορεί πλέον να επιλέξει και τα προϊόντα που επιθυμεί μέσω του καταλόγου που θα εμφανίζεται. Επιλέγωντας προσωρινά τα προϊόντα εμφανίζεται ο εκτιμώμενος χρόνος για παρασκευή και παραλαβή. Αν ο χρήστης συμφωνεί τότε οριστικοποιεί τις επιλογές του με τη χρήση του ανάλογου κουμπιού. \n\n 3.	Επιλογή στάσης: \n Στο σημείο αυτό εμφανίζεται στο χρήστη ο χάρτης με τις διαθέσιμες στάσεις με βάση τον εκτιμώμενο χρόνο παραλαβής και τη διαδρομή του λεωφορείου. Με τη χρήση ενός κουμπιού οριστικοποίησης, ο χρήστης επιλέγει τη στάση παραλαβής των προϊόντων του. \n\n 4.	Ολοκλήρωση παραγγελίας: \n Σε αυτό το στάδιο της εφαρμογής, ο χρήστης οδηγείται σε μια σελίδα στην οποία προβάλλονται οι επιλογές του, τις οποίες επιβεβαιώνει με τη χρήση των ανάλογων κουμπιών. Οδηγείται σε μια ξεχωριστή ιστοσελίδα που επιλέγει το τύπο πληρωμής, καταγράφει τα στοιχεία πληρωμής και όταν αυτά εγκριθούν παραλαμβάνει την ηλεκτρονική απόδειξη. Τέλος, εμφανίζεται το αντίστοιχο χρονόμετρο με τον εκτιμώμενο χρόνο παραλαβής."
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. Coffee Shop Selection: \n The user can choose the coffee shop based on his preferences, distance and any available discounts. \n\n 2. Drink Selection: \n After the user has chosen the desirable coffee shop, he is able to order from the provided catalog. Then the estimated time for preperation and delivery appears and if the user approves the choices are finalized. \n\n 3.	Bus Stop Selection: \n At this point the user is porvided with a map with the available bus stops to select from. The list bus stops provided is based on the estimated time and the current bus route. \n\n 4.	Order Completion: \n At this point, the user is directed to a page in which he chooses payment method, enters his card information and when these are approved he receives the electronic receipt. Finally, a countdown appears with the estimated time for delivery."
     },
   ],
   tour: [
     {
       id: "shortReferenceManual",
-      title: "Εγχειρίδιο Σύντομης Αναφοράς",
-      description: null,
+      title: "Short Reference Manual",
+      description: "Map: \n Interactive map of Berlin City with the route stops and nearby restaurants. \n\n Choices: \n Controls whether the route and restaurants are displayed on the map with the simple press of a button.", 
     },
     {
       id: "fullReferenceManual",
-      title: "Αναλυτικό Εγχειρίδιο Αναφοράς",
-      description: null,
+      title: "Full Reference Manual",
+      description: "Details: \n\n 1. 'Show Restaurant' Choice: \n With this option, the user can choose whether nearby restaurants will be displayed on the map. \n\n 'Show Bus Route' Choice: \n With this option, the user can choose the bus route will be displayed on the map. The bus stops will remain visible regardless of the user's choice.",
     },
   ],
 };
-
-// function HomePage() {
-//   return (
-//     <div className="bus-home-page">
-//       <h1>Σύστημα Διαχείρισης Λεωφορείου</h1>
-//       <p>Επιλέξτε μια λειτουργία από το μενού</p>
-//     </div>
-//   );
-// }
 
 function MenuIcon() {
   return (
@@ -125,7 +110,7 @@ function RightSidebarGuide({ guides }: { guides: GuideItem[] }) {
                   alt={guide.title}
                   className="guide-thumbnail"
                 />
-                <div className="hover-hint">🖱️ Κρατήστε το ποντίκι για μεγέθυνση</div>
+                <div className="hover-hint">🖱️ Hold the mouse for zoom in.</div>
               </div>
           )}
         </div>
@@ -143,7 +128,7 @@ function RightSidebarGuide({ guides }: { guides: GuideItem[] }) {
               className="enlarged-image"
             />
             <div className="modal-instruction">
-              Μετακινήστε το ποντίκι έξω για κλείσιμο
+              Move the mouse for zoom out.
             </div>
           </div>
         </div>
@@ -173,7 +158,7 @@ export function MenuPassengerApp({ onBack }: MenuPassengerAppProps) {
         <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" style={{padding: "8px", borderRadius: "8px", cursor: "pointer"}}>
           <ArrowLeft className="w-6 h-6" size = {24} />
         </button>
-        <h2 style={{ fontWeight: "bold", margin: 0, marginRight: "auto", lineHeight: "24px" }} >Μενού</h2>
+        <h2 style={{ fontWeight: "bold", margin: 0, marginRight: "auto", lineHeight: "24px" }}>Menu</h2>
       </div>
       
       <div className="bus-left-sidebar-content">
@@ -226,14 +211,8 @@ export function MenuPassengerApp({ onBack }: MenuPassengerAppProps) {
       {/* Right Sidebar */}
       <aside className={`bus-right-sidebar ${isRightSidebarOpen ? 'right-open' : 'right-closed'}`}>
       <div className="bus-right-sidebar-content">
-          <h2  style={{ fontWeight: "bold"}}>ΠΛΗΡΟΦΟΡΙΕΣ</h2>
-          {guidesByMenu[activeMenu] ? (
-            <RightSidebarGuide guides={guidesByMenu[activeMenu]}/>
-          ) : (
-            <p>Δεν υπάρχουν διαθέσιμες πληροφορίες.</p>
-          )}
-
-          
+        <h2  style={{ fontWeight: "bold"}}>Information</h2>
+        {<RightSidebarGuide guides={guidesByMenu[activeMenu]}/>}
       </div>
       </aside>
     </div>
