@@ -95,15 +95,17 @@ export const LeafletMap = forwardRef<LeafletMapHandle, Props>(
       setTimeout(() => map.invalidateSize(), 0);
     }, [busStops, restaurants, routePath, onSelectStop, showRestaurants, showRoute]);
 
-    // Fly to selected stop
+    // Fly to selected stop or restaurant
     useEffect(() => {
-      if (selectedStop && mapRef.current) {
+      if (!mapRef.current) return;
+
+      if (selectedStop) {
         mapRef.current.flyTo(selectedStop.position, 16);
+      } else if (selectedRestaurant) {
+        mapRef.current.flyTo(selectedRestaurant.position, 16);
       }
-      if (selectedRestaurant && mapRef.current){
-            mapRef.current.flyTo(selectedRestaurant.position, 16)
-        }
     }, [selectedStop, selectedRestaurant]);
+
 
     return <div ref={containerRef} className="w-full h-full" />;
   }
