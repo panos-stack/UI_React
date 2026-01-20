@@ -67,7 +67,7 @@ export function MapView() {
             {/* Bus Stops */}
             <div>
               <h3 className="lego-berlin-map-section-title">
-                <MapPin className="lego-w-5 lego-h-5 lego-text-blue-600" />
+                <MapPin className="lego-w-5 lego-h-5 lego-text-blue-600"/>
                 Bus Stops
               </h3>
               <div className="lego-berlin-map-stops-list">
@@ -96,7 +96,7 @@ export function MapView() {
             {/* Nearby Restaurants */}
             <div>
               <h3 className="lego-berlin-map-section-title">
-                <Utensils className="lego-w-5 lego-h-5 lego-text-red-600" />
+                <Utensils className="lego-w-5 lego-h-5 lego-text-red-600"/>
                 Nearby Restaurants
               </h3>
               <div className="lego-berlin-map-restaurants-list">
@@ -182,6 +182,22 @@ export function MapView() {
                 <Navigation className="lego-w-4 lego-h-4" />
                 <span>Arrival: {selectedStop.arrivalTime}</span>
               </div>
+            </div>
+          )}
+
+          {/* Selected restaurant info */}
+          {selectedRestaurant && (
+            <div className="lego-berlin-map-stop-detail">
+              <div>
+                <h3 className="lego-berlin-map-stop-detail-name">{selectedRestaurant.name}</h3>
+                <button
+                  onClick={() => setSelectedRestaurant(null)}
+                  className="lego-berlin-map-stop-close"
+                >
+                  ✕
+                </button>
+              </div>
+              <p className="lego-berlin-map-restaurant-cuisine">{selectedRestaurant.distance}</p>
             </div>
           )}
         </div>

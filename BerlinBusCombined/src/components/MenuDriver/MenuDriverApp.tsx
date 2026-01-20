@@ -249,7 +249,7 @@ export function MenuDriverApp({ onBack }: MenuDriverAppProps) {
       {/* Right Sidebar */}
       <aside className={`bus-right-sidebar ${isRightSidebarOpen ? 'right-open' : 'right-closed'}`}>
       <div className="bus-right-sidebar-content">
-          <h2  style={{ fontWeight: "bold"}}>Information</h2>
+          <h2  style={{ fontWeight: "bold", textAlign: 'center', padding: 5}}>Information</h2>
           <RightSidebarGuide guides={guidesByMenu[activeMenu]}/>          
       </div>
       </aside>

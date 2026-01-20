@@ -651,6 +651,7 @@ body {
   font-weight: 600;
   color: #111827;
   margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -830,7 +831,7 @@ body {
 .lego-berlin-map-stop-detail {
   position: absolute;
   top: 1.5rem;
-  left: 1.5rem;
+  right: 1.5rem;
   background-color: white;
   border-radius: 0.75rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -850,6 +851,7 @@ body {
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.75rem;
+  padding-right: 0.65rem;
   color: #111827;
 }
 

@@ -52,7 +52,7 @@ export default function App() {
                 <Users className="w-12 h-12 text-white" strokeWidth={2} />
               </div>
               <div>
-                <h2 className="text-slate-800 mb-2">Passengers profile</h2>
+                <h2 className="text-slate-800 mb-2">Passenger profile</h2>
               </div>
             </div>
           </button>

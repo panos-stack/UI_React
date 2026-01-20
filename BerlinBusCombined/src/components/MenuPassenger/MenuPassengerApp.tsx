@@ -5,7 +5,6 @@ import { DriverView } from './DriverView';
 import { HistoricalSights } from './HistoricalSights';
 import { MapView } from './MapView';
 import './stylesPassenger.css';
-
 import orderSteps from './images/order.jpg';
 
 type MenuItem = {
@@ -211,7 +210,7 @@ export function MenuPassengerApp({ onBack }: MenuPassengerAppProps) {
       {/* Right Sidebar */}
       <aside className={`bus-right-sidebar ${isRightSidebarOpen ? 'right-open' : 'right-closed'}`}>
       <div className="bus-right-sidebar-content">
-        <h2  style={{ fontWeight: "bold"}}>Information</h2>
+        <h2  style={{ fontWeight: "bold", textAlign: 'center', padding: 5}}>Information</h2>
         {<RightSidebarGuide guides={guidesByMenu[activeMenu]}/>}
       </div>
       </aside>
