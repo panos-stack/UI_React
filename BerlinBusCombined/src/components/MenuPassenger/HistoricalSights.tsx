@@ -157,6 +157,10 @@ export function HistoricalSights() {
                   {selectedSight.funFact}
                 </p>
               </div>
+
+              <div style={{padding: 10, textAlign: "center"}}>
+                <span > For additional information about the {selectedSight.name}'s location proceed to "Navigation for Tourists" tab on the left. </span>
+              </div> 
             </div>
           </div>
         </div>
