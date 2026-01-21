@@ -154,7 +154,7 @@ export function RoofManagement() {
 
         {/* Solar Panel Status */}
         <div className="bus-stat-card bus-mb-6">
-          <h3 className="bus-mb-4">Photovoltaic Status</h3>
+          <h3 className="bus-mb-4">Photovoltaic State</h3>
           <div className="bus-space-y-4">
             <div className="bus-progress-row">
               <span className="bus-text-sm">Panel 1 (Front)</span>

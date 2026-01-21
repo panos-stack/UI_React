@@ -83,7 +83,7 @@ const guidesByMenu: Record<string, GuideItem[]> = {
     {
       id: "fullReferenceManual",
       title: "Full Reference Manual",
-      description: "Αναλυτικές Λειτουργίες: \n\n 1. Διαχείριση Οροφής και Ενέργειας: \n Τα δεδομένα ενημερώνονται ανά συχνά χρονικά διαστήματα ώστε ο χρήστης να μπορεί να καταλάβει αν βοηθά στην παραγωγή ενέργειας ή αν καταναλώνει την ήδη υπάρχουσα. \n\n 2. Κατάσταση Φωτοβολταϊκών: \n Ο χρήστης μπορεί να ενημερωθεί για την κατάσταση της μπαταρίας και τη λειτουργία κάθε πανελ ξεχωριστά \n\n 3. Στατιστικά: \n Ο χρήστης μπορεί να ενημερωθεί για τα στατιστικά της ενέργειας που παράχθηκε καθώς και αυτής που καταναλώθηκε από το λεωφορείο και να εξάγει συμπεράσματα ώστε να βελτιώσει την αξιοποίηση των διαθέσιμων πόρων.",
+      description: "Details: \n\n 1. Energy and Roof Management: \n The user is provided with frequent updates that help him understand whether he is contributing in the production of the energy or if he is consumes the already produced energy resources. \n\n 2. Photovoltaic State: \n The user gets feedback about the battery state and the function of each of the panels. \n\n 3. Statistics: \n The user can get informed about the statistics of the energy produced and the energy consumed by the bus and and draw conclusions in order to improve the utilization of the available resources.",
     },
   ],
   robotVacum: [
